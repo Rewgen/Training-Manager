@@ -3,7 +3,7 @@ import { Musclegroup } from "./Musclegroup";
 export interface Exercise {
     id : number,
     name : string,
-    muscleGroup : Musclegroup,
+    musclegroup : Musclegroup,
     sets : number,
     reps : number,
 };
