@@ -1,9 +1,9 @@
 import { Musclegroup } from "./Musclegroup";
 
 export interface Exercise {
-    id : number,
-    name : string,
+    id : string,
+    name: string,
     musclegroup : Musclegroup,
     sets : number,
-    reps : number,
-};
+    reps: number 
+}

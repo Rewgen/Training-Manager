@@ -1,11 +1,8 @@
 export enum Musclegroup {
-    chest = "chest",
-    upper_back = "upper_back",
-    lower_back = "lower_back",
-    shoulder = "shoulder",
-    abs = "abs",
-    calves = "calves",
-    legs = "legs",
-    biceps = "biceps",
-    triceps = "triceps",
+    Chest = "CHEST",
+    Back = "BACK",
+    Legs = "LEGS",
+    Core = "CORE",
+    Shoulders = "SHOULDERS",
+    Arms = "ARMS"
 }

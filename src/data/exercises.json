@@ -2,7 +2,7 @@
     {
         "id" : 1,
         "name" : "Bankdrücken",
-        "musclegroup" : "chest",
+        "musclegroup" : "Chest",
         "sets" : 3,
         "reps" : 8
     }
