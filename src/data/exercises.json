@@ -5,5 +5,12 @@
         "musclegroup" : "Chest",
         "sets" : 3,
         "reps" : 8
+    },
+    {
+        "id" : 2,
+        "name" : "Kniebeugen",
+        "musclegroup" : "Legs",
+        "sets" : 3,
+        "reps" : 8
     }
 ]

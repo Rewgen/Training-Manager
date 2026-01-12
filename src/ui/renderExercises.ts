@@ -1,13 +1,14 @@
-import { loadExercises } from "../logic/loadExercises.js";
+import type { Exercise } from "../models/Exercise.js";
 
-const exerciseListContainer = document.getElementById("exerciseListContainer");
-
-export let showExercises = async function(){
-
-    let exercisesArray = await loadExercises();
-    exercisesArray.forEach((ex : string) => {
+// Displays the loaded JSON in the DOM
+const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
+export let showExercises = function(exercisesArray : Array<Exercise>){
+    exercisesArray.forEach((ex : Exercise ) => {
         let li = document.createElement("li");
-        li.innerText = ex;
-        exerciseListContainer?.appendChild(li);
+        li.textContent = `${ex.name} - ${ex.musclegroup} - ${ex.sets} x ${ex.reps}`;
+        exerciseList.appendChild(li);
     });
 };
+
+
+//  --> NEXT: Trennung von Daten laden und daten anzeigen -> import " { loadExercises } from "../logic/loadExercises.js"; " entfernen
