@@ -12,5 +12,19 @@
         "musclegroup" : "Legs",
         "sets" : 3,
         "reps" : 8
+    },
+    {
+        "id" : 3,
+        "name" : "Klimmzüge",
+        "musclegroup" : "Back",
+        "sets" : 4,
+        "reps" : 6
+    },
+    {
+        "id" : 4,
+        "name" : "Sit-Ups",
+        "musclegroup" : "Core",
+        "sets" : 3,
+        "reps" : 20
     }
 ]
