@@ -8,6 +8,24 @@
     </head>
 
     <body>
+
+        <form id="add-exercise-container">
+            <input type="text" id="add-exercise-name" placeholder="Name" required>
+            <select id="add-exercise-musclegroup" required>
+                <option value="All" selected>Alle Muskelgruppen</option>
+                <option value="Chest">Brust</option>
+                <option value="Back">Rücken</option>
+                <option value="Legs">Beine</option>
+                <option value="Core">Rumpf</option>
+                <option value="Shoulders">Schultern</option>
+                <option value="Arms">Arme</option>
+            </select>
+            <input type="number" id="add-exercise-sets" placeholder="Sets" required>
+            <input type="number" id="add-exercise-reps" placeholder="Reps" required>
+            <button type="submit">Absenden</button>
+        </form>
+        
+
         <select name="exercise-list-filter" id="exercise-list-filter">
             <option value="All" selected>Alle Muskelgruppen</option>
             <option value="Chest">Brust</option>

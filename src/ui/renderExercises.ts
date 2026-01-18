@@ -1,4 +1,4 @@
-import type { Exercise } from "../models/Exercise.js";
+import type { Exercise } from "../models/Exercise";
 
 // Displays the loaded JSON in the DOM
 const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;

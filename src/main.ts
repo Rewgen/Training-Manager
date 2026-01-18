@@ -1,25 +1,29 @@
-import { loadExercises } from "./logic/loadExercises.js";
-import { showExercises } from "./ui/renderExercises.js";
-import { filterExercisesByMusclegroup } from "./logic/filterExercises.js";
+// MODELS
 import { Musclegroup } from "./models/Musclegroup.js";
-import type { Exercise } from "./models/Exercise.js";
+import type { Exercise } from "./models/Exercise";
+// LOGIC
+import { initAddExercise } from "./logic/addExercise.js";
+import { loadExercises } from "./logic/loadExercises.js";
+import { initFilterExercise } from "./logic/filterExercises.js";
+// UI
+import { showExercises } from "./ui/renderExercises.js";
 
+// ---------
+
+// Load Data
 let allExercises: Array<Exercise> = [];
-
 let init = async function() {
     allExercises = await loadExercises();
+    initFilterExercise(allExercises);
+    initAddExercise(allExercises);
     showExercises(allExercises);
+
 };
 
-const exerciseListFilter = document.getElementById("exercise-list-filter") as HTMLSelectElement;
-exerciseListFilter.addEventListener("change", async () => {
-    console.clear();
-    const selectedValue = exerciseListFilter.value as Musclegroup;
-
-    const filtered = filterExercisesByMusclegroup(allExercises, selectedValue);
-
-    showExercises(filtered);
-});
-
-
 init();
+
+
+
+
+
+

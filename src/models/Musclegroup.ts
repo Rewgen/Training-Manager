@@ -1,4 +1,5 @@
 export enum Musclegroup {
+    All = "ALL",
     Chest = "CHEST",
     Back = "BACK",
     Legs = "LEGS",
