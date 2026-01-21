@@ -1,5 +1,6 @@
 import type { Exercise } from "../models/Exercise";
 import { Musclegroup } from "../models/Musclegroup.js";
+import { applyFilter } from "./filterExercises.js";
 
 // DOM Variables
 export const addExerciseDom = {
@@ -14,7 +15,9 @@ export const addExerciseDom = {
 export let initAddExercise = function(allExercises : Array<Exercise>){
     addExerciseDom.container.addEventListener("submit", (event) => {
         event.preventDefault();
-        addExercise(allExercises);
+        allExercises = addExercise(allExercises);
+        applyFilter(allExercises);
+        
     })
 };
 
