@@ -1,8 +1,8 @@
 import type { Exercise } from "../models/Exercise";
 
-// Displays the loaded JSON in the DOM
+// Displays loaded Exercises in the DOM
 const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
-export let showExercises = function(exercisesArray : Array<Exercise>){
+export let showExercises = (exercisesArray : Array<Exercise>) => {
     exerciseList.innerHTML = "";
     exercisesArray.forEach((ex : Exercise ) => {
         let li = document.createElement("li");

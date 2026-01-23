@@ -1,6 +1,10 @@
+// Models
 import type { Exercise } from "../models/Exercise";
 import { Musclegroup } from "../models/Musclegroup.js";
+// Logic
 import { applyFilter } from "./filterExercises.js";
+import { saveExercises } from "./saveExercises.js";
+
 
 // DOM Variables
 export const addExerciseDom = {
@@ -12,18 +16,19 @@ export const addExerciseDom = {
 };
 
 
-export let initAddExercise = function(allExercises : Array<Exercise>){
+export let initAddExercise = (allExercises : Array<Exercise>) => {
     addExerciseDom.container.addEventListener("submit", (event) => {
         event.preventDefault();
         allExercises = addExercise(allExercises);
         applyFilter(allExercises);
-        
+        emptyInput();
+        saveExercises(allExercises);
     })
+    return allExercises
 };
 
 
-export let addExercise = (allExercises : Array<Exercise>) => {
-
+let addExercise = (allExercises : Array<Exercise>) => {
     let newExercise : Exercise = {
         id : allExercises.length + 1,
         name : addExerciseDom.name.value,
@@ -31,11 +36,13 @@ export let addExercise = (allExercises : Array<Exercise>) => {
         sets : addExerciseDom.sets.valueAsNumber,
         reps : addExerciseDom.reps.valueAsNumber
     };
-
     allExercises.push(newExercise);
-    // JSON.stringify(allExercises) 
-    
-    console.log(allExercises);
-    console.log(newExercise);
     return allExercises
+};
+
+let emptyInput = () => {
+    addExerciseDom.name.value = "";
+    addExerciseDom.musclegroup.value = "";
+    addExerciseDom.sets.value = "";
+    addExerciseDom.reps.value = "";
 };

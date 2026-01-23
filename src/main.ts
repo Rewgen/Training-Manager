@@ -10,14 +10,14 @@ import { showExercises } from "./ui/renderExercises.js";
 
 // ---------
 
+
 // Load Data
 let allExercises: Array<Exercise> = [];
-let init = async function() {
+let init = async () => {
     allExercises = await loadExercises();
     initFilterExercise(allExercises);
     initAddExercise(allExercises);
     showExercises(allExercises);
-
 };
 
 init();
