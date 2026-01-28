@@ -2,7 +2,7 @@ Was ist das Problem, das meine App löst?
 
 Ich erstelle meine Trainingspläne aktuell jedes Mal neu und möchte maximale Freiheit bei der Trainingsgestaltung haben.
 Viele bestehende Apps sind entweder zu komplex oder bieten nur eine begrenzte Auswahl an Übungen.
-Diese App fokussiert sich darauf, dass Nutzer ihre eigenen Übungen selbst anlegen, verwalten und flexibel für Trainingspläne nutzen können.
+Diese App fokussiert sich darauf, dass Nutzer seine eigenen Übungen selbst anlegen, verwalten und flexibel für Trainingspläne nutzen können.
 
 
 Beschreibung

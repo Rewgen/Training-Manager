@@ -30,7 +30,7 @@ export let initAddExercise = (allExercises : Array<Exercise>) => {
 
 let addExercise = (allExercises : Array<Exercise>) => {
     let newExercise : Exercise = {
-        id : allExercises.length + 1,
+        id : Date.now(),
         name : addExerciseDom.name.value,
         musclegroup : addExerciseDom.musclegroup.value as Musclegroup,
         sets : addExerciseDom.sets.valueAsNumber,
