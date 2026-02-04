@@ -1,15 +1,24 @@
+// Models
 import type { Exercise } from "../models/Exercise";
+import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 // Displays loaded Exercises in the DOM
 const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
 export let showExercises = (exercisesArray : Array<Exercise>) => {
     exerciseList.innerHTML = "";
     exercisesArray.forEach((ex : Exercise ) => {
+
+        let mgSelection = ex.musclegroup;
+        let germanLabel = musclegroupLabels[mgSelection];
+
         let li = document.createElement("li");
-        li.textContent = `${ex.name} - ${ex.musclegroup} - ${ex.sets} x ${ex.reps}`;
+        li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`;
         
         let deleteButton = createDeleteButton(ex.id);
         li.appendChild(deleteButton);
+
+        let editButton = createEditButton(ex.id);
+        li.appendChild(editButton);
 
         exerciseList.appendChild(li);
     });
@@ -24,3 +33,10 @@ let createDeleteButton = function(exerciseId : number):HTMLButtonElement{
     return deleteButton
 };
 
+let createEditButton = function(exerciseId : number):HTMLButtonElement{
+    let editButton = document.createElement("button");
+    editButton.classList.add("edit-button");
+    editButton.dataset.id = exerciseId.toString();
+    editButton.textContent = "Bearbeiten";
+    return editButton
+};

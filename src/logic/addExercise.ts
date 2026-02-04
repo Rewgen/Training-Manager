@@ -28,7 +28,9 @@ export let initAddExercise = (allExercises : Array<Exercise>) => {
 };
 
 
+
 let addExercise = (allExercises : Array<Exercise>) => {
+    
     let newExercise : Exercise = {
         id : Date.now(),
         name : addExerciseDom.name.value,

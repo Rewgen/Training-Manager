@@ -1,9 +1,9 @@
 export enum Musclegroup {
-    All = "ALL",
-    Chest = "CHEST",
-    Back = "BACK",
-    Legs = "LEGS",
-    Core = "CORE",
-    Shoulders = "SHOULDERS",
-    Arms = "ARMS"
+    All = "All",
+    Chest = "Chest",
+    Back = "Back",
+    Legs = "Legs",
+    Core = "Core",
+    Shoulders = "Shoulders",
+    Arms = "Arms"
 }

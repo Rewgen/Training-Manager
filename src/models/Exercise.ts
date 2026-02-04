@@ -1,4 +1,4 @@
-import { Musclegroup } from "./Musclegroup";
+import { Musclegroup } from "./Musclegroup.js";
 
 export interface Exercise {
     id : number,

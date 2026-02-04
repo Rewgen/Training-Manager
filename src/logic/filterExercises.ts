@@ -12,7 +12,6 @@ export let applyFilter = (allExercises : Array<Exercise>) => {
         if (selectedValue === Musclegroup.All) {
             showExercises(allExercises);
         } else {
-            // const filtered = filterExercisesByMusclegroup(allExercises, selectedValue);
             const filtered = allExercises.filter(ex => ex.musclegroup === selectedValue) as Array<Exercise>;
             showExercises(filtered);
         }  
