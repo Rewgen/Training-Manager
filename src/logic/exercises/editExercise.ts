@@ -1,13 +1,13 @@
 // Main
-import { updateChanges } from "../main.js";
+import { updateChanges } from "../../main.js";
 
 // Models
-import type { Exercise } from "../models/Exercise";
-import { Musclegroup } from "../models/Musclegroup.js";
+import type { Exercise } from "../../models/Exercise.js";
+import { Musclegroup } from "../../models/Musclegroup.js";
 // Logic
 import { applyFilter } from "./filterExercises.js";
 import { saveExercises } from "./saveExercises.js";
-import { musclegroupLabels } from "../models/MusclegroubLabels.js";
+import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
 
 export let initEditLogic = function(allExercises: Exercise[]){
     // Exercise DOM-list

@@ -1,4 +1,4 @@
-import type { Exercise } from "../models/Exercise";
+import type { Exercise } from "../../models/Exercise";
 // Logic
 import { applyFilter } from "./filterExercises.js";
 import { saveExercises } from "./saveExercises.js";

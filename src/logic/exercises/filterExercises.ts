@@ -1,6 +1,6 @@
-import type { Exercise } from "../models/Exercise";
-import { Musclegroup } from "../models/Musclegroup.js";
-import { showExercises } from "../ui/renderExercises.js";
+import type { Exercise } from "../../models/Exercise";
+import { Musclegroup } from "../../models/Musclegroup.js";
+import { showExercises } from "../../ui/renderExercises.js";
 
 
 const exerciseListFilter = document.getElementById("exercise-list-filter") as HTMLSelectElement;  

@@ -1,5 +1,5 @@
 // MODELS
-import type { Exercise } from "../models/Exercise";
+import type { Exercise } from "../../models/Exercise";
 
 // Load exercises or [], if empty
 export const loadExercises = async () => {

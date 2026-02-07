@@ -1,6 +1,6 @@
 // Models
-import type { Exercise } from "../models/Exercise";
-import { Musclegroup } from "../models/Musclegroup.js";
+import type { Exercise } from "../../models/Exercise";
+import { Musclegroup } from "../../models/Musclegroup.js";
 // Logic
 import { applyFilter } from "./filterExercises.js";
 import { saveExercises } from "./saveExercises.js";
