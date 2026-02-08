@@ -4,12 +4,11 @@ import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 // Displays loaded Exercises in the DOM
 const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
-export let showExercises = (exercisesArray : Array<Exercise>) => {
+export let showExercises = (exercisesArray : Exercise[]) => {
     exerciseList.innerHTML = "";
     exercisesArray.forEach((ex : Exercise ) => {
 
-        let mgSelection = ex.musclegroup;
-        let germanLabel = musclegroupLabels[mgSelection];
+        let germanLabel = musclegroupLabels[ex.musclegroup];
 
         let li = document.createElement("li");
         li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`;

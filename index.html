@@ -9,6 +9,7 @@
 
     <body>
 
+        <!-- Add exercise input elements -->
         <form id="add-exercise-container">
             <input type="text" id="add-exercise-name" placeholder="Name" required>
             <select id="add-exercise-musclegroup" required>
@@ -25,7 +26,7 @@
             <button type="submit">Absenden</button>
         </form>
         
-
+        <!-- Muscle group filter Dropwdown -->
         <select name="exercise-list-filter" id="exercise-list-filter">
             <option value="All" selected>Alle Muskelgruppen</option>
             <option value="Chest">Brust</option>
@@ -36,25 +37,24 @@
             <option value="Arms">Arme</option>
         </select>
 
+        <!-- New Training Plan -->
         <button id="new-training-plan">Neuer Trainingsplan</button>
-
         <dialog id="new-training-plan-popUp">
             <form>
                 <h3>Neuer Trainingsplan</h3>
-                
                 <input type="text" id="input-train-plan-name">
-
                 <fieldset id="train-plan-selection-area">
-                    
                 </fieldset>
-
                 <button id="save-plan-button" type="submit">Speichern</button>
-
             </form>
         </dialog>
 
+        <!-- Exercises -->
         <ul id="exercise-list"></ul>
         
+        <!-- Training Plans -->
+        <section id="training-plan-section"></section>
+
         <script type="module" src="./dist/main.js"></script>
     </body>
 

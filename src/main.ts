@@ -1,6 +1,7 @@
 // MODELS
 import { Musclegroup } from "./models/Musclegroup.js";
 import type { Exercise } from "./models/Exercise";
+import type { TrainingPlan } from "./models/TrainingPlan.js";
 // LOGIC
 import { initAddExercise } from "./logic/exercises/addExercise.js";
 import { loadExercises } from "./logic/exercises/loadExercises.js";
@@ -8,25 +9,32 @@ import { initFilterExercise, applyFilter } from "./logic/exercises/filterExercis
 import { initDeleteLogic } from "./logic/exercises/deleteExercise.js";
 import { initEditLogic } from "./logic/exercises/editExercise.js";
 import { saveExercises } from "./logic/exercises/saveExercises.js";
-import { initLoadTrainingPlan } from "./logic/trainingPlans/addTrainingPlan.js";
 
+import { initAddTrainingPlan } from "./logic/trainingPlans/addTrainingPlan.js";
+import { loadTrainingPlan } from "./logic/trainingPlans/loadTrainingPlans.js";
 
 // UI
 import { showExercises } from "./ui/renderExercises.js";
-
+import { showTrainingPlans } from "./ui/renderTrainingPlans.js"
 // ---------
 
 
 // Load Data
-let allExercises: Array<Exercise> = [];
+let allExercises:Exercise[] = [];
+let allTrainingPlans:TrainingPlan[] = [];
 let init = async () => {
+
     allExercises = await loadExercises();
-    initLoadTrainingPlan(allExercises);
+    allTrainingPlans = loadTrainingPlan();
+    initAddTrainingPlan(allExercises);
     initFilterExercise(allExercises);
     initAddExercise(allExercises);
     initDeleteLogic(allExercises);
     initEditLogic(allExercises);
+
     showExercises(allExercises);
+
+    showTrainingPlans(allTrainingPlans, allExercises);
 
 };
 

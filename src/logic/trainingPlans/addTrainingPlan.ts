@@ -1,29 +1,28 @@
 // Models
 import type { Exercise } from "../../models/Exercise";
-import type { TrainingPlan } from "../../models/TrainingPlan.js";
+import type { TrainingPlan } from "../../models/TrainingPlan";
+
+// Logic
+import { saveTrainingPlan } from "./saveTrainingPlans.js";
 
 
 
-let newPlanBtn = document.getElementById("new-training-plan") as HTMLButtonElement;
-let newPlanPopUp = document.getElementById("new-training-plan-popUp") as HTMLDialogElement;
 
+const newPlanBtn = document.getElementById("new-training-plan") as HTMLButtonElement;
+const newPlanPopUp = document.getElementById("new-training-plan-popUp") as HTMLDialogElement;
 const trainPlanForm = document.querySelector("#new-training-plan-popUp > form") as HTMLFormElement; //ein form element in einem dialog
 const selectionArea = document.getElementById("train-plan-selection-area") as HTMLFieldSetElement;
 const inputPlanName = document.getElementById("input-train-plan-name") as HTMLInputElement;
 
 
 // Init Training Plan logic
-export let initLoadTrainingPlan = function(allExercises : Exercise[]){
+export let initAddTrainingPlan = function(allExercises : Exercise[]){
 
-    // addNewTrainingPlan(exercises);
-    loadTrainingPlan();
     // open pop-up for new Training Plan
     newPlanBtn.onclick = () => {
         newPlanPopUp.showModal();
         addExercisesToPlan(allExercises);
     }
-    
-
 };
 
 
@@ -56,11 +55,8 @@ let addExercisesToPlan = function (allExercises : Exercise[]) {
         const selectedIds = selectedStringIds.map(id => Number(id));
         
         addNewTrainingPlan(planName, selectedIds);
-
     })
 }
-
-
 
 // add new Training Plan
 let trainingPlans = [];
@@ -75,28 +71,3 @@ let addNewTrainingPlan = function(planName:string, exerciseIds:number[]){
     console.log(trainingPlans);
     saveTrainingPlan(trainingPlans);
 };
-
-
-// Save Training Plans
-let saveTrainingPlan = function(trainingPlans : TrainingPlan[]){
-    localStorage.setItem("trainingPlanList", JSON.stringify(trainingPlans))
-};
-
-// Load Training Plans
-let loadTrainingPlan = function() {
-    let trainPlan = localStorage.getItem("trainingPlanList");
-    if (trainPlan) {
-        let trainPlanConvert = JSON.parse(trainPlan)
-        console.log(trainPlanConvert, ": geladenen Übungen");
-    }
-    
-}
-
-
-// -------
-
-
-
-
-
-
