@@ -1,11 +1,9 @@
+// Main
+import { updateTrainingPlans } from "../../main.js";
+
 // Models
 import type { Exercise } from "../../models/Exercise";
 import type { TrainingPlan } from "../../models/TrainingPlan";
-
-// Logic
-import { saveTrainingPlan } from "./saveTrainingPlans.js";
-
-
 
 
 const newPlanBtn = document.getElementById("new-training-plan") as HTMLButtonElement;
@@ -16,13 +14,30 @@ const inputPlanName = document.getElementById("input-train-plan-name") as HTMLIn
 
 
 // Init Training Plan logic
-export let initAddTrainingPlan = function(allExercises : Exercise[]){
+let allTrainingPlans:TrainingPlan[] = [];
+
+export let initAddTrainingPlan = function(allExercises : Exercise[], loadedTrainingPlans:TrainingPlan[]){
 
     // open pop-up for new Training Plan
     newPlanBtn.onclick = () => {
         newPlanPopUp.showModal();
         addExercisesToPlan(allExercises);
-    }
+    };
+
+    // add new training plan with selected name and exercises by submit
+    trainPlanForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const planName : string = inputPlanName.value;
+        // get all Id's of selected Exercises
+        const checkboxData = new FormData(trainPlanForm);
+        const selectedStringIds = checkboxData.getAll("exerciseCheckbox");
+        const selectedIds = selectedStringIds.map(id => Number(id));
+        
+        addNewTrainingPlan(planName, selectedIds, allExercises);
+    })
+
+    allTrainingPlans = loadedTrainingPlans;
 };
 
 
@@ -43,31 +58,17 @@ let addExercisesToPlan = function (allExercises : Exercise[]) {
         label.appendChild(newCheckbox);
         selectionArea.appendChild(label);
     });
-
-    // add new training plan with selected name and exercises
-    trainPlanForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-
-        const planName : string = inputPlanName.value;
-        // get all Id's of selected Exercises
-        const checkboxData = new FormData(trainPlanForm);
-        const selectedStringIds = checkboxData.getAll("exerciseCheckbox");
-        const selectedIds = selectedStringIds.map(id => Number(id));
-        
-        addNewTrainingPlan(planName, selectedIds);
-    })
 }
 
 // add new Training Plan
-let trainingPlans = [];
-let addNewTrainingPlan = function(planName:string, exerciseIds:number[]){
+let addNewTrainingPlan = function(planName:string, exerciseIds:number[], allExercises:Exercise[]){
     let newTrainingPlan : TrainingPlan = {
         name : planName,
         id : Date.now(),
         exerciseIds: exerciseIds
     };
-    trainingPlans.push(newTrainingPlan);
-    console.log(newTrainingPlan);
-    console.log(trainingPlans);
-    saveTrainingPlan(trainingPlans);
+    
+    allTrainingPlans.push(newTrainingPlan)
+
+    updateTrainingPlans(allExercises, allTrainingPlans);
 };

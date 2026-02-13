@@ -6,9 +6,11 @@ import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 import { convertIdToExercise } from "../logic/exercises/convertToExercise.js";
 
 
-export let showTrainingPlans = function(allTrainingPlans:TrainingPlan[], allExercises:Exercise[]){
-    
-    const trainingPlanSection = document.getElementById("training-plan-section") as HTMLElement;
+export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlans:TrainingPlan[]){
+
+    const trainingPlanContainer = document.querySelector("#training-plan-section > div") as HTMLElement;
+
+    trainingPlanContainer.textContent = "";
 
     allTrainingPlans.forEach(trainPlan => {
         const ul = document.createElement("ul") as HTMLUListElement;
@@ -30,7 +32,7 @@ export let showTrainingPlans = function(allTrainingPlans:TrainingPlan[], allExer
             ul.appendChild(li);
         });
 
-        trainingPlanSection.appendChild(ul);
+        trainingPlanContainer.appendChild(ul);
 
     });
 

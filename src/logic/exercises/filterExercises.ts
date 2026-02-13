@@ -1,28 +1,39 @@
+// Main
+import { updateExercises } from "../../main.js";
+
+// Models
 import type { Exercise } from "../../models/Exercise";
 import { Musclegroup } from "../../models/Musclegroup.js";
-import { showExercises } from "../../ui/renderExercises.js";
+
+
 
 
 const exerciseListFilter = document.getElementById("exercise-list-filter") as HTMLSelectElement;  
 
+
+// initializes the filter as eventListener
+export let initFilterExercise = (allExercises:Exercise[]) => {
+    exerciseListFilter.addEventListener("change", async () => {
+        updateExercises(allExercises);
+})
+};
+
+
 // Filter logic -> Filters exercises by selected muscle group
-export let applyFilter = (allExercises : Array<Exercise>) => {
+export let applyFilter = (allExercises: Exercise[]) => {
+    let exercises = []
     const selectedValue = exerciseListFilter.value as Musclegroup;
         // show filtered exercises in DOM
         if (selectedValue === Musclegroup.All) {
-            showExercises(allExercises);
+            exercises = allExercises;
         } else {
             const filtered = allExercises.filter(ex => ex.musclegroup === selectedValue) as Array<Exercise>;
-            showExercises(filtered);
+            exercises = filtered;
         }  
+    return exercises;
 };
 
 
-// initializes the filter as eventListener
-export let initFilterExercise = (allExercises : Array<Exercise>) => {
-    exerciseListFilter.addEventListener("change", async () => {
-        applyFilter(allExercises);
-})
-};
+
 
 

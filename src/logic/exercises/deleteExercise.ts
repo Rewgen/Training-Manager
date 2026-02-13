@@ -1,7 +1,10 @@
+// Main
+import { updateExercises } from "../../main.js";
+
+// Models
 import type { Exercise } from "../../models/Exercise";
-// Logic
-import { applyFilter } from "./filterExercises.js";
-import { saveExercises } from "./saveExercises.js";
+
+
 
 export let initDeleteLogic = function(allExercises : Exercise[]){
     document.addEventListener("click", (event) => {
@@ -23,7 +26,6 @@ export let initDeleteLogic = function(allExercises : Exercise[]){
         allExercises.length = 0;
         allExercises.push(...updatedExercises);
 
-        applyFilter(allExercises);
-        saveExercises(allExercises);
+        updateExercises(allExercises)
     })
 };

@@ -11,12 +11,16 @@ import { initEditLogic } from "./logic/exercises/editExercise.js";
 import { saveExercises } from "./logic/exercises/saveExercises.js";
 
 import { initAddTrainingPlan } from "./logic/trainingPlans/addTrainingPlan.js";
+import { saveTrainingPlan } from "./logic/trainingPlans/saveTrainingPlans.js";
 import { loadTrainingPlan } from "./logic/trainingPlans/loadTrainingPlans.js";
 
 // UI
 import { showExercises } from "./ui/renderExercises.js";
 import { showTrainingPlans } from "./ui/renderTrainingPlans.js"
+import { initUpdateView } from "./ui/updateView.js";
 // ---------
+
+
 
 
 // Load Data
@@ -26,7 +30,6 @@ let init = async () => {
 
     allExercises = await loadExercises();
     allTrainingPlans = loadTrainingPlan();
-    initAddTrainingPlan(allExercises);
     initFilterExercise(allExercises);
     initAddExercise(allExercises);
     initDeleteLogic(allExercises);
@@ -34,16 +37,35 @@ let init = async () => {
 
     showExercises(allExercises);
 
-    showTrainingPlans(allTrainingPlans, allExercises);
+    initAddTrainingPlan(allExercises, allTrainingPlans);
+    showTrainingPlans(allExercises, allTrainingPlans);
+
+    initUpdateView(allExercises, allTrainingPlans);
 
 };
 
-export let updateChanges = function(allExercises : Exercise[]){
-    applyFilter(allExercises);
+export let updateExercises = function(allExercises:Exercise[]){   
     saveExercises(allExercises);
+    let exercises = applyFilter(allExercises);
+    console.log(exercises);
+    showExercises(exercises);
 };
+
+export let updateTrainingPlans = function (allExercises:Exercise[], allTrainingPlans:TrainingPlan[]) {
+    saveTrainingPlan(allTrainingPlans);
+    showTrainingPlans(allExercises, allTrainingPlans)
+};
+
+
 
 init();
+
+
+
+
+
+// ---------------------------------
+
 
 
 

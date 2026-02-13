@@ -1,5 +1,5 @@
 // Main
-import { updateChanges } from "../../main.js";
+import { updateExercises } from "../../main.js";
 
 // Models
 import type { Exercise } from "../../models/Exercise.js";
@@ -80,7 +80,7 @@ let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[
         exerciseToEdit.sets = changeSets.valueAsNumber;
         exerciseToEdit.reps = changeReps.valueAsNumber;
 
-        updateChanges(allExercises);
+        updateExercises(allExercises);
     });
 
     // Return Button
@@ -88,7 +88,7 @@ let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[
     returnBtn.textContent = "Abbrechen";
 
     returnBtn.addEventListener("click", () => {
-        updateChanges(allExercises);
+        updateExercises(allExercises);
     });
 
 

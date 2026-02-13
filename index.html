@@ -26,6 +26,8 @@
             <button type="submit">Absenden</button>
         </form>
         
+
+
         <!-- Muscle group filter Dropwdown -->
         <select name="exercise-list-filter" id="exercise-list-filter">
             <option value="All" selected>Alle Muskelgruppen</option>
@@ -48,12 +50,28 @@
                 <button id="save-plan-button" type="submit">Speichern</button>
             </form>
         </dialog>
+<!---------------------------------- -->
+        <!-- Change View. Exercises/ Training Plans -->
+        <form id="radio-form">
+            <label for="opt-ex">Übungen</label>
+            <input type="radio" name="view" id="opt-ex" value="exercises" checked>
+            
+            <label for="opt-plan">Trainingspläne</label>
+            <input type="radio" name="view" id="opt-plan" value="plans">
+        </form>
 
         <!-- Exercises -->
-        <ul id="exercise-list"></ul>
-        
+         <section id="exercise-section">
+            <h2>Übungen</h2>
+            <ul id="exercise-list"></ul>
+        </section>
+
         <!-- Training Plans -->
-        <section id="training-plan-section"></section>
+        <section id="training-plan-section">
+            <h2>Trainingspläne</h2>
+            <div></div>
+        </section>
+<!-- -------------------------------- -->
 
         <script type="module" src="./dist/main.js"></script>
     </body>

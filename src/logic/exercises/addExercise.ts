@@ -1,3 +1,6 @@
+// Main
+import { updateExercises } from "../../main.js";
+
 // Models
 import type { Exercise } from "../../models/Exercise";
 import { Musclegroup } from "../../models/Musclegroup.js";
@@ -20,9 +23,10 @@ export let initAddExercise = (allExercises : Array<Exercise>) => {
     addExerciseDom.container.addEventListener("submit", (event) => {
         event.preventDefault();
         allExercises = addExercise(allExercises);
-        applyFilter(allExercises);
+        
+        updateExercises(allExercises);
         emptyInput();
-        saveExercises(allExercises);
+
     })
     return allExercises
 };
