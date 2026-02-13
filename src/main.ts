@@ -6,7 +6,7 @@ import type { TrainingPlan } from "./models/TrainingPlan.js";
 import { initAddExercise } from "./logic/exercises/addExercise.js";
 import { loadExercises } from "./logic/exercises/loadExercises.js";
 import { initFilterExercise, applyFilter } from "./logic/exercises/filterExercises.js";
-import { initDeleteLogic } from "./logic/exercises/deleteExercise.js";
+import { initDeleteLogic } from "./logic/deleteLogic.js";
 import { initEditLogic } from "./logic/exercises/editExercise.js";
 import { saveExercises } from "./logic/exercises/saveExercises.js";
 
@@ -33,7 +33,7 @@ let init = async () => {
     initFilterExercise(allExercises);
     initAddExercise(allExercises);
     initDeleteLogic(allExercises, allTrainingPlans);
-    initEditLogic(allExercises);
+    initEditLogic(allExercises, allTrainingPlans);
 
     showExercises(allExercises);
 

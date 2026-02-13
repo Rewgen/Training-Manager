@@ -1,15 +1,16 @@
 // Main
 import { updateExercises } from "../../main.js";
+import { updateTrainingPlans } from "../../main.js";
 
 // Models
 import type { Exercise } from "../../models/Exercise.js";
+import type { TrainingPlan } from "../../models/TrainingPlan";
 import { Musclegroup } from "../../models/Musclegroup.js";
 // Logic
-import { applyFilter } from "./filterExercises.js";
-import { saveExercises } from "./saveExercises.js";
 import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
 
-export let initEditLogic = function(allExercises: Exercise[]){
+
+export let initEditLogic = function(allExercises: Exercise[], allTrainingPlans : TrainingPlan[]){
     // Exercise DOM-list
     const list = document.getElementById("exercise-list");
     if(!(list instanceof HTMLElement)) return;
@@ -29,11 +30,11 @@ export let initEditLogic = function(allExercises: Exercise[]){
         let exerciseToEdit = allExercises.find(ex => ex.id === id);
         if(!exerciseToEdit) return;
 
-        enterEditMode(exerciseToEdit, allExercises)
+        enterEditMode(exerciseToEdit, allExercises, allTrainingPlans)
     })
 };
 
-let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[]){
+let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
     let li = document.querySelector(`button[data-id="${exerciseToEdit.id}"]`)?.closest("li");
     if(!li) return;
 
@@ -81,6 +82,7 @@ let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[
         exerciseToEdit.reps = changeReps.valueAsNumber;
 
         updateExercises(allExercises);
+        updateTrainingPlans(allExercises, allTrainingPlans);
     });
 
     // Return Button

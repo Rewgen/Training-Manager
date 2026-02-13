@@ -1,10 +1,10 @@
 // Main
-import { updateExercises } from "../../main.js";
-import { updateTrainingPlans } from "../../main.js";
+import { updateExercises } from "../main.js";
+import { updateTrainingPlans } from "../main.js";
 
 // Models
-import type { Exercise } from "../../models/Exercise";
-import type { TrainingPlan } from "../../models/TrainingPlan";
+import type { Exercise } from "../models/Exercise.js";
+import type { TrainingPlan } from "../models/TrainingPlan.js";
 
 
 
@@ -21,13 +21,20 @@ export let initDeleteLogic = function(allExercises : Exercise[], allTrainingPlan
 
         const numericId = Number(id);
 
+        // delete Exercise
         const updatedExercises = allExercises.filter(
             (ex) => ex.id !== numericId
         );
-
         allExercises.length = 0;
         allExercises.push(...updatedExercises);
 
+        // delete Training Pplan
+        const updatedTrainingPlan = allTrainingPlans.filter(
+            (plan) => plan.id !== numericId
+        );
+        allTrainingPlans.length = 0;
+        allTrainingPlans.push(...updatedTrainingPlan);
+    
         updateExercises(allExercises);
         updateTrainingPlans(allExercises, allTrainingPlans);
     })

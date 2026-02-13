@@ -2,8 +2,7 @@
 import type { TrainingPlan } from "../models/TrainingPlan.js";
 import type { Exercise } from "../models/Exercise";
 import { musclegroupLabels } from "../models/MusclegroubLabels.js";
-// Logic
-import { convertIdToExercise } from "../logic/exercises/convertToExercise.js";
+
 
 
 export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlans:TrainingPlan[]){
@@ -15,13 +14,21 @@ export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlan
     allTrainingPlans.forEach(trainPlan => {
         const ul = document.createElement("ul") as HTMLUListElement;
         const headline = document.createElement("h3") as HTMLHeadingElement;
+        const deleteButton = createDeleteButton(trainPlan.id) as HTMLButtonElement;
+        const editButton = createEditButton(trainPlan.id) as HTMLButtonElement;
 
         // add Training Plan Name as headline 
         headline.textContent = trainPlan.name;
         ul.appendChild(headline);
 
+        // add Buttons
+        ul.appendChild(deleteButton);
+        ul.appendChild(editButton);
+
         // convert and add exercises to Training Plan
-        let exercises:Exercise[] = convertIdToExercise(trainPlan.exerciseIds, allExercises);
+        let exercises:Exercise[] = allExercises.filter(ex => trainPlan.exerciseIds.includes(ex.id));
+
+
         exercises.forEach(ex => {
             
             let germanLabel = musclegroupLabels[ex.musclegroup];
@@ -37,3 +44,19 @@ export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlan
     });
 
 }
+
+let createDeleteButton = function(TrainPlanId : number):HTMLButtonElement{
+    let deleteButton = document.createElement("button");
+    deleteButton.classList.add("delete-button");
+    deleteButton.dataset.id = TrainPlanId.toString();
+    deleteButton.textContent = "Löschen";
+    return deleteButton
+};
+
+let createEditButton = function(TrainPlanId : number):HTMLButtonElement{
+    let editButton = document.createElement("button");
+    editButton.classList.add("edit-button");
+    editButton.dataset.id = TrainPlanId.toString();
+    editButton.textContent = "Bearbeiten";
+    return editButton
+};
