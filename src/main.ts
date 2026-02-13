@@ -32,7 +32,7 @@ let init = async () => {
     allTrainingPlans = loadTrainingPlan();
     initFilterExercise(allExercises);
     initAddExercise(allExercises);
-    initDeleteLogic(allExercises);
+    initDeleteLogic(allExercises, allTrainingPlans);
     initEditLogic(allExercises);
 
     showExercises(allExercises);

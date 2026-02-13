@@ -1,12 +1,14 @@
 // Main
 import { updateExercises } from "../../main.js";
+import { updateTrainingPlans } from "../../main.js";
 
 // Models
 import type { Exercise } from "../../models/Exercise";
+import type { TrainingPlan } from "../../models/TrainingPlan";
 
 
 
-export let initDeleteLogic = function(allExercises : Exercise[]){
+export let initDeleteLogic = function(allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
     document.addEventListener("click", (event) => {
         
         if (!(event.target instanceof HTMLElement)) return;
@@ -26,6 +28,7 @@ export let initDeleteLogic = function(allExercises : Exercise[]){
         allExercises.length = 0;
         allExercises.push(...updatedExercises);
 
-        updateExercises(allExercises)
+        updateExercises(allExercises);
+        updateTrainingPlans(allExercises, allTrainingPlans);
     })
 };

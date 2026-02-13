@@ -4,13 +4,14 @@ import { updateExercises } from "../../main.js";
 // Models
 import type { Exercise } from "../../models/Exercise";
 import { Musclegroup } from "../../models/Musclegroup.js";
-// Logic
-import { applyFilter } from "./filterExercises.js";
-import { saveExercises } from "./saveExercises.js";
+
+
 
 
 // DOM Variables
 export const addExerciseDom = {
+    newExBtn : document.getElementById("new-exercise") as HTMLButtonElement,
+    newExPopUp : document.getElementById("new-exercise-popUp") as HTMLDialogElement,
     container : document.getElementById("add-exercise-container") as HTMLFormElement,
     name : document.getElementById("add-exercise-name") as HTMLInputElement,
     musclegroup : document.getElementById("add-exercise-musclegroup") as HTMLInputElement,
@@ -19,7 +20,14 @@ export const addExerciseDom = {
 };
 
 
-export let initAddExercise = (allExercises : Array<Exercise>) => {
+export let initAddExercise = (allExercises : Exercise[]) => {
+
+    // pop-up for new exercise
+    addExerciseDom.newExBtn.onclick = () => {
+        addExerciseDom.newExPopUp.showModal();
+    };
+
+    // save new exercise
     addExerciseDom.container.addEventListener("submit", (event) => {
         event.preventDefault();
         allExercises = addExercise(allExercises);
