@@ -1,24 +1,22 @@
 // Main
-import { updateExercises } from "../../main.js";
-import { updateTrainingPlans } from "../../main.js";
+import { updateExercises } from "../main.js";
+import { updateTrainingPlans } from "../main.js";
 
 // Models
-import type { Exercise } from "../../models/Exercise.js";
-import type { TrainingPlan } from "../../models/TrainingPlan";
-import { Musclegroup } from "../../models/Musclegroup.js";
+import type { Exercise } from "../models/Exercise.js";
+import type { TrainingPlan } from "../models/TrainingPlan.js";
+import { Musclegroup } from "../models/Musclegroup.js";
 // Logic
-import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
+import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 
 export let initEditLogic = function(allExercises: Exercise[], allTrainingPlans : TrainingPlan[]){
     // Exercise DOM-list
-    const list = document.getElementById("exercise-list");
-    if(!(list instanceof HTMLElement)) return;
 
-    list.addEventListener("click", (event) => {
+    document.addEventListener("click", (event) => {
 
         if(!(event.target instanceof HTMLElement)) return;
-    
+
         const editButton = event.target.closest(".edit-button");
         if(!(editButton instanceof HTMLElement)) return;
 
@@ -27,14 +25,19 @@ export let initEditLogic = function(allExercises: Exercise[], allTrainingPlans :
 
         let id = Number(idString);
 
+        // edit Exercise
         let exerciseToEdit = allExercises.find(ex => ex.id === id);
-        if(!exerciseToEdit) return;
+        if (exerciseToEdit) editExercise(exerciseToEdit, allExercises, allTrainingPlans);
+        
+        // edit Training Plan
+        let trainingPlanToEdit = allTrainingPlans.find(plan => plan.id === id);
+        if(trainingPlanToEdit) editTrainingPlan(trainingPlanToEdit, allExercises, allTrainingPlans);
 
-        enterEditMode(exerciseToEdit, allExercises, allTrainingPlans)
     })
 };
 
-let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
+// edit Exercise logic
+let editExercise = function(exerciseToEdit : Exercise, allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
     let li = document.querySelector(`button[data-id="${exerciseToEdit.id}"]`)?.closest("li");
     if(!li) return;
 
@@ -93,6 +96,11 @@ let enterEditMode = function(exerciseToEdit : Exercise, allExercises : Exercise[
         updateExercises(allExercises);
     });
 
-
     li.append(changeName, changeMusclegroup, changeSets, changeReps, saveBtn, returnBtn);
-}
+};
+
+
+// edit Training Plan logic
+let editTrainingPlan = function(trainingPlanToEdit : TrainingPlan, allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
+    console.log("bearbeiten");
+};

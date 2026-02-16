@@ -7,19 +7,19 @@ import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlans:TrainingPlan[]){
 
-    const trainingPlanContainer = document.querySelector("#training-plan-section > div") as HTMLElement;
+    const trainingPlanList = document.getElementById("training-plan-list") as HTMLElement;
 
-    trainingPlanContainer.textContent = "";
+    trainingPlanList.textContent = "";
 
     allTrainingPlans.forEach(trainPlan => {
         const ul = document.createElement("ul") as HTMLUListElement;
-        const headline = document.createElement("h3") as HTMLHeadingElement;
+        const heading = document.createElement("h3") as HTMLHeadingElement;
         const deleteButton = createDeleteButton(trainPlan.id) as HTMLButtonElement;
-        const editButton = createEditButton(trainPlan.id) as HTMLButtonElement;
+        const editButton = createOpenButton(trainPlan.id) as HTMLButtonElement;
 
-        // add Training Plan Name as headline 
-        headline.textContent = trainPlan.name;
-        ul.appendChild(headline);
+        // add Training Plan Name as heading 
+        heading.textContent = trainPlan.name;
+        ul.appendChild(heading);
 
         // add Buttons
         ul.appendChild(deleteButton);
@@ -30,16 +30,17 @@ export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlan
 
 
         exercises.forEach(ex => {
-            
+            // later use Plan previev
             let germanLabel = musclegroupLabels[ex.musclegroup];
 
-            let li = document.createElement("li");
-            li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`;
+            // let li = document.createElement("li");
+            // li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`; 
             
-            ul.appendChild(li);
+            
+            // ul.appendChild(li);
         });
 
-        trainingPlanContainer.appendChild(ul);
+        trainingPlanList.appendChild(ul);
 
     });
 
@@ -53,10 +54,10 @@ let createDeleteButton = function(TrainPlanId : number):HTMLButtonElement{
     return deleteButton
 };
 
-let createEditButton = function(TrainPlanId : number):HTMLButtonElement{
+let createOpenButton = function(TrainPlanId : number):HTMLButtonElement{
     let editButton = document.createElement("button");
-    editButton.classList.add("edit-button");
+    editButton.classList.add("open-plan-button");
     editButton.dataset.id = TrainPlanId.toString();
-    editButton.textContent = "Bearbeiten";
+    editButton.textContent = "Plan anzeigen";
     return editButton
 };

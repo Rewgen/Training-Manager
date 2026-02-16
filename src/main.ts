@@ -7,8 +7,9 @@ import { initAddExercise } from "./logic/exercises/addExercise.js";
 import { loadExercises } from "./logic/exercises/loadExercises.js";
 import { initFilterExercise, applyFilter } from "./logic/exercises/filterExercises.js";
 import { initDeleteLogic } from "./logic/deleteLogic.js";
-import { initEditLogic } from "./logic/exercises/editExercise.js";
+import { initEditLogic } from "./logic/editLogic.js";
 import { saveExercises } from "./logic/exercises/saveExercises.js";
+import { initOpenPlanLogic } from "./logic/trainingPlans/openTrainingPlan.js";
 
 import { initAddTrainingPlan } from "./logic/trainingPlans/addTrainingPlan.js";
 import { saveTrainingPlan } from "./logic/trainingPlans/saveTrainingPlans.js";
@@ -39,6 +40,7 @@ let init = async () => {
 
     initAddTrainingPlan(allExercises, allTrainingPlans);
     showTrainingPlans(allExercises, allTrainingPlans);
+    initOpenPlanLogic(allExercises, allTrainingPlans);
 
     initUpdateView(allExercises, allTrainingPlans);
 

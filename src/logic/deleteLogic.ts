@@ -22,16 +22,12 @@ export let initDeleteLogic = function(allExercises : Exercise[], allTrainingPlan
         const numericId = Number(id);
 
         // delete Exercise
-        const updatedExercises = allExercises.filter(
-            (ex) => ex.id !== numericId
-        );
+        const updatedExercises = allExercises.filter((ex) => ex.id !== numericId);
         allExercises.length = 0;
         allExercises.push(...updatedExercises);
 
         // delete Training Pplan
-        const updatedTrainingPlan = allTrainingPlans.filter(
-            (plan) => plan.id !== numericId
-        );
+        const updatedTrainingPlan = allTrainingPlans.filter((plan) => plan.id !== numericId);
         allTrainingPlans.length = 0;
         allTrainingPlans.push(...updatedTrainingPlan);
     
