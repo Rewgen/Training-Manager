@@ -10,20 +10,24 @@ import { Musclegroup } from "../models/Musclegroup.js";
 import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 
-export let initEditLogic = function(allExercises: Exercise[], allTrainingPlans : TrainingPlan[]){
+// === Add exercises to Training Plans ===
+
+export let initAddLogic = function(allExercises: Exercise[]){
     // Exercise DOM-list
 
     document.addEventListener("click", (event) => {
 
         if(!(event.target instanceof HTMLElement)) return;
 
-        const editButton = event.target.closest(".edit-button");
+        const editButton = event.target.closest(".add-exercise-button");
         if(!(editButton instanceof HTMLElement)) return;
 
         let idString = editButton.dataset.id;
         if(!(idString)) return;
 
         let id = Number(idString);
+
+        /*
 
         // edit Exercise
         let exerciseToEdit = allExercises.find(ex => ex.id === id);
@@ -33,8 +37,12 @@ export let initEditLogic = function(allExercises: Exercise[], allTrainingPlans :
         let trainingPlanToEdit = allTrainingPlans.find(plan => plan.id === id);
         if(trainingPlanToEdit) editTrainingPlan(trainingPlanToEdit, allExercises, allTrainingPlans);
 
+        */
     })
 };
+
+
+/*
 
 // edit Exercise logic
 let editExercise = function(exerciseToEdit : Exercise, allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
@@ -91,3 +99,6 @@ let editExercise = function(exerciseToEdit : Exercise, allExercises : Exercise[]
 let editTrainingPlan = function(trainingPlanToEdit : TrainingPlan, allExercises : Exercise[], allTrainingPlans : TrainingPlan[]){
     console.log("bearbeiten");
 };
+
+
+*/

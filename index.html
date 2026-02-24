@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Übungsmanager</title>
         <link rel="stylesheet" type="text/css" href="./styles/main.css">
     </head>
 
@@ -24,6 +24,8 @@
 
         <!-- Dashboard -->
         <section id="dashboard-section">
+
+            <!-- First page (LATER) -->
 
         </section>
 
@@ -50,7 +52,7 @@
             <button id="new-exercise">Übung erstellen</button>
             <dialog id="new-exercise-popUp">
                 <form id="add-exercise-container">
-                    <input type="text" id="add-exercise-name" placeholder="Name" required>
+                    <input type="text" id="add-exercise-name" placeholder="Name der Übung" required>
                     <select id="add-exercise-musclegroup" required>
                         <option value="" selected disabled hidden>Bitte wählen</option>
                         <option value="Chest">Brust</option>
@@ -60,13 +62,11 @@
                         <option value="Shoulders">Schultern</option>
                         <option value="Arms">Arme</option>
                     </select>
-                    <input type="number" id="add-exercise-sets" placeholder="Sätze" required>
-                    <input type="number" id="add-exercise-reps" placeholder="Wiederholungen" required>
                     <button type="submit">Absenden</button>
                 </form>
             </dialog>
 
-            <!-- Listed exercises -->
+            <!-- (all/filtered) exercise list -->
             <ul id="exercise-list"></ul>
         </section>
 <!-- -------------------------------- -->
@@ -74,7 +74,8 @@
         <!-- Training Plans -->
         <section id="training-plan-section">
 
-            <div id="training-plans-container">
+            <!-- (all) training plans -->
+            <div id="training-plans-overview">
                 <h2>Trainingspläne</h2>
 
                 <!-- New Training Plan -->
@@ -82,9 +83,7 @@
                 <dialog id="new-training-plan-popUp">
                     <form>
                         <h3>Neuer Trainingsplan</h3>
-                        <input type="text" id="input-train-plan-name">
-                        <fieldset id="train-plan-selection-area">
-                        </fieldset>
+                        <input type="text" id="input-train-plan-name" required>
                         <button id="save-plan-button" type="submit">Speichern</button>
                     </form>
                 </dialog>
@@ -93,9 +92,24 @@
                 <div id="training-plan-list"></div>
             </div>
 
-            <!-- Training Plan Overview -->
-            <div id="training-plan-overview"></div>
+            <!-- Training Plan Details -->
+            <div id="training-plan-details">
+                <ul id="training-plan-exercises"></ul>
+            </div>
 
+            <!-- Add exercises to plan Overview -->
+            <dialog id="training-plan-add-exercises-dialog">
+                
+                <!-- exercises as buttons -->
+                <div id="training-plan-add-exercises-list"></div>
+
+                <div id="exercise-config" class="hidden">
+                    <input type="number" id="sets" placeholder="Sätze" />
+                    <input type="number" id="reps" placeholder="Wiederholungen" />
+                    <input type="number" id="pause" placeholder="Pause" />
+                    <button id="save-exercise">Speichern</button>
+                </div>
+            </dialog>
 
         </section>
 <!-- -------------------------------- -->

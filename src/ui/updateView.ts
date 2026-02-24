@@ -3,11 +3,6 @@ import type { Exercise } from "../models/Exercise.js";
 import type { TrainingPlan } from "../models/TrainingPlan.js";
 import type { ViewMode } from "../models/ViewMode.js";
 
-// UI
-import { showExercises } from "./renderExercises.js";
-import { showTrainingPlans } from "./renderTrainingPlans.js"
-
-
 let currentView:ViewMode = "exercises";
 
 // Init eventListener 
@@ -18,13 +13,9 @@ export let initUpdateView = function(allExercises:Exercise[], allTrainingPlans:T
 
         let radioBtn = event.target as HTMLInputElement
 
-        if (radioBtn.value === "exercises") {
-            
-            changeView("exercises", allExercises, allTrainingPlans);
-        } else {
-            
-            changeView("plans", allExercises, allTrainingPlans);
-        }
+        if (radioBtn.value === "exercises") 
+            {changeView("exercises", allExercises, allTrainingPlans);} 
+        else {changeView("plans", allExercises, allTrainingPlans);}
     })
 };
 
@@ -33,21 +24,21 @@ export let changeView = function(view : ViewMode, allExercises : Exercise[], all
     currentView = view;
     
     const exerciseSection = document.getElementById("exercise-section") as HTMLElement;
-    const trainingPlanContainer = document.getElementById("training-plans-container") as HTMLElement;
-    const planOverview = document.getElementById("training-plan-overview") as HTMLElement;
+    const trainingPlansOverview = document.getElementById("training-plans-overview") as HTMLElement;
+    const trainingPlanDetails = document.getElementById("training-plan-details") as HTMLElement;
 
     if (currentView === "exercises") {
         exerciseSection.style.display = "block";
-        trainingPlanContainer.style.display = "none";
-        planOverview.style.display = "none";
+        trainingPlansOverview.style.display = "none";
+        trainingPlanDetails.style.display = "none";
     } else if (currentView === "plans") {
         exerciseSection.style.display = "none";
-        trainingPlanContainer.style.display = "block";
-        planOverview.style.display = "none";
-    } else if (currentView === "planOverview") {
+        trainingPlansOverview.style.display = "block";
+        trainingPlanDetails.style.display = "none";
+    } else if (currentView === "planDetails") {
         exerciseSection.style.display = "none";
-        trainingPlanContainer.style.display = "none";
-        planOverview.style.display = "block";
+        trainingPlansOverview.style.display = "none";
+        trainingPlanDetails.style.display = "block";
     }
 }
 

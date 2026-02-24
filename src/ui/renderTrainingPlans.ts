@@ -26,19 +26,19 @@ export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlan
         ul.appendChild(editButton);
 
         // convert and add exercises to Training Plan
-        let exercises:Exercise[] = allExercises.filter(ex => trainPlan.exerciseIds.includes(ex.id));
+        // let exercises:Exercise[] = allExercises.filter(ex => trainPlan.exerciseIds.includes(ex.id));
 
 
-        exercises.forEach(ex => {
+        // exercises.forEach(ex => {
             // later use Plan previev
-            let germanLabel = musclegroupLabels[ex.musclegroup];
+            // let germanLabel = musclegroupLabels[ex.musclegroup];
 
             // let li = document.createElement("li");
             // li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`; 
             
             
             // ul.appendChild(li);
-        });
+        // });
 
         trainingPlanList.appendChild(ul);
 

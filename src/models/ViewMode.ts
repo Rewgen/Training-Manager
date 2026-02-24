@@ -1,1 +1,1 @@
-export type ViewMode = "exercises" | "plans" | "planOverview";
+export type ViewMode = "exercises" | "plans" | "planDetails";

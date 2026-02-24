@@ -11,7 +11,7 @@ export let showExercises = (exercisesArray : Exercise[]) => {
         let germanLabel = musclegroupLabels[ex.musclegroup];
 
         let li = document.createElement("li");
-        li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`;
+        li.textContent = `${ex.name} - ${germanLabel}`;
         
         let deleteButton = createDeleteButton(ex.id);
         li.appendChild(deleteButton);

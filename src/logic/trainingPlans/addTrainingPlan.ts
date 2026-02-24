@@ -9,7 +9,6 @@ import type { TrainingPlan } from "../../models/TrainingPlan";
 const newPlanBtn = document.getElementById("new-training-plan") as HTMLButtonElement;
 const newPlanPopUp = document.getElementById("new-training-plan-popUp") as HTMLDialogElement;
 const trainPlanForm = document.querySelector("#new-training-plan-popUp > form") as HTMLFormElement; //ein form element in einem dialog
-const selectionArea = document.getElementById("train-plan-selection-area") as HTMLFieldSetElement;
 const inputPlanName = document.getElementById("input-train-plan-name") as HTMLInputElement;
 
 
@@ -21,7 +20,6 @@ export let initAddTrainingPlan = function(allExercises : Exercise[], loadedTrain
     // open pop-up for new Training Plan
     newPlanBtn.onclick = () => {
         newPlanPopUp.showModal();
-        addExercisesToPlan(allExercises);
     };
 
     // add new training plan with selected name and exercises by submit
@@ -29,43 +27,22 @@ export let initAddTrainingPlan = function(allExercises : Exercise[], loadedTrain
         event.preventDefault();
 
         const planName : string = inputPlanName.value;
-        // get all Id's of selected Exercises
-        const checkboxData = new FormData(trainPlanForm);
-        const selectedStringIds = checkboxData.getAll("exerciseCheckbox");
-        const selectedIds = selectedStringIds.map(id => Number(id));
         
-        addNewTrainingPlan(planName, selectedIds, allExercises);
+        addNewTrainingPlan(planName, allExercises);
     })
 
     allTrainingPlans = loadedTrainingPlans;
 };
 
 
-// add selected Exercises to new Plan
-let addExercisesToPlan = function (allExercises : Exercise[]) {
-    selectionArea.innerText = "";
 
-    allExercises.forEach(ex => {
-        // new Checkbox
-        const newCheckbox = document.createElement("input") as HTMLInputElement;
-        newCheckbox.type = "checkbox";
-        newCheckbox.name = "exerciseCheckbox";
-        newCheckbox.value = ex.id.toString();
-        // Label for Checkbox
-        const label = document.createElement("label") as HTMLLabelElement;
-        label.innerText = ex.name;
-
-        label.appendChild(newCheckbox);
-        selectionArea.appendChild(label);
-    });
-}
 
 // add new Training Plan
-let addNewTrainingPlan = function(planName:string, exerciseIds:number[], allExercises:Exercise[]){
+let addNewTrainingPlan = function(planName:string, allExercises:Exercise[]){
     let newTrainingPlan : TrainingPlan = {
         name : planName,
         id : Date.now(),
-        exerciseIds: exerciseIds
+        exercises: []
     };
     
     allTrainingPlans.push(newTrainingPlan)

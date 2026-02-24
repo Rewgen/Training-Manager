@@ -1,5 +1,7 @@
+import type { PlanExercise } from "./PlanExercise";
+
 export interface TrainingPlan {
     name : string,
     id : number,
-    exerciseIds : number[]
+    exercises : PlanExercise[]
 }

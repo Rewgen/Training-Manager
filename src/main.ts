@@ -3,13 +3,14 @@ import { Musclegroup } from "./models/Musclegroup.js";
 import type { Exercise } from "./models/Exercise";
 import type { TrainingPlan } from "./models/TrainingPlan.js";
 // LOGIC
-import { initAddExercise } from "./logic/exercises/addExercise.js";
+import { initCreateExercise } from "./logic/exercises/createExercise.js";
 import { loadExercises } from "./logic/exercises/loadExercises.js";
 import { initFilterExercise, applyFilter } from "./logic/exercises/filterExercises.js";
 import { initDeleteLogic } from "./logic/deleteLogic.js";
 import { initEditLogic } from "./logic/editLogic.js";
 import { saveExercises } from "./logic/exercises/saveExercises.js";
 import { initOpenPlanLogic } from "./logic/trainingPlans/openTrainingPlan.js";
+import { initAddLogic } from "./logic/addLogic.js";
 
 import { initAddTrainingPlan } from "./logic/trainingPlans/addTrainingPlan.js";
 import { saveTrainingPlan } from "./logic/trainingPlans/saveTrainingPlans.js";
@@ -32,7 +33,7 @@ let init = async () => {
     allExercises = await loadExercises();
     allTrainingPlans = loadTrainingPlan();
     initFilterExercise(allExercises);
-    initAddExercise(allExercises);
+    initCreateExercise(allExercises);
     initDeleteLogic(allExercises, allTrainingPlans);
     initEditLogic(allExercises, allTrainingPlans);
 
@@ -41,6 +42,7 @@ let init = async () => {
     initAddTrainingPlan(allExercises, allTrainingPlans);
     showTrainingPlans(allExercises, allTrainingPlans);
     initOpenPlanLogic(allExercises, allTrainingPlans);
+    initAddLogic(allExercises);
 
     initUpdateView(allExercises, allTrainingPlans);
 
@@ -49,7 +51,6 @@ let init = async () => {
 export let updateExercises = function(allExercises:Exercise[]){   
     saveExercises(allExercises);
     let exercises = applyFilter(allExercises);
-    console.log(exercises);
     showExercises(exercises);
 };
 
