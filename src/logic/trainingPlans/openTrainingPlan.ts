@@ -14,10 +14,6 @@ export let initOpenPlanLogic = function(allExercises : Exercise[], allTrainingPl
     // logic for open-plan-button
     document.addEventListener("click", (event) => {
 
-        // Change viewMode -> UI folder
-        const view : ViewMode = "planDetails";
-        changeView(view, allExercises, allTrainingPlans);
-
         // get the right button
         if (!(event.target instanceof HTMLElement)) return;
 
@@ -31,6 +27,10 @@ export let initOpenPlanLogic = function(allExercises : Exercise[], allTrainingPl
         // get the right training plan
         const selectedPlan = allTrainingPlans.find(plan  => numericId === plan.id);
         if(!selectedPlan) return
+
+        // Change viewMode -> UI folder
+        const view : ViewMode = "planDetails";
+        changeView(view, allExercises, allTrainingPlans);
 
         // render plan details -> UI folder (renderPlanDetails)
         showPlanDetails(selectedPlan, allExercises, allTrainingPlans);

@@ -1,6 +1,6 @@
 // Models
 import type { TrainingPlan } from "../models/TrainingPlan.js";
-import type { Exercise } from "../models/Exercise";
+import type { Exercise } from "../models/Exercise.js";
 import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 

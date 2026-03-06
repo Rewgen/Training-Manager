@@ -2,8 +2,8 @@
 import { updateTrainingPlans } from "../../main.js";
 
 // Models
-import type { Exercise } from "../../models/Exercise";
-import type { TrainingPlan } from "../../models/TrainingPlan";
+import type { Exercise } from "../../models/Exercise.js";
+import type { TrainingPlan } from "../../models/TrainingPlan.js";
 
 
 const newPlanBtn = document.getElementById("new-training-plan") as HTMLButtonElement;

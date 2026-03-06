@@ -2,7 +2,7 @@
 import { updateExercises } from "../../main.js";
 
 // Models
-import type { Exercise } from "../../models/Exercise";
+import type { Exercise } from "../../models/Exercise.js";
 import { Musclegroup } from "../../models/Musclegroup.js";
 
 

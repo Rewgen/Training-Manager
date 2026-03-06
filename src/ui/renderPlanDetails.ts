@@ -96,21 +96,28 @@ let renderExerciseButtons = function (allExercises : Exercise[]) {
 
     // create button for each exercise
     allExercises.forEach(ex => {
+        
         const btn = document.createElement("button");
         btn.textContent = ex.name;
         btn.dataset.id = ex.id.toString();
-        // set id for exercise
-        btn.onclick = () => selectExercise(ex.id);
+        
+        // set id for exercise and render config
+        btn.onclick = () => {
+            // 
+            getDomElement.exerciseConfig.classList.remove("hidden");
+            selectExercise(ex.id)
+        };
 
         getDomElement.planAddExerciseList.appendChild(btn);
     });
 };
 
 
-// set id for exercise and render configuration
+
+
+// set id for exercise btn
 let selectExercise = function(id: number) {
     selectedExerciseId = id;
-    getDomElement.exerciseConfig.classList.remove("hidden");
 };
 
 

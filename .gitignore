@@ -5,6 +5,7 @@ dist/
 # Notes
 workflow.md
 randomNotes.md
+ArchitecturalRefactoring.md
 
 # unused Code
 src/UseLater.md
