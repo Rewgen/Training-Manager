@@ -3,11 +3,11 @@ import { Musclegroup } from "./models/Musclegroup.js";
 import type { Exercise } from "./models/Exercise.js";
 import type { TrainingPlan } from "./models/TrainingPlan.js";
 // LOGIC
-import { loadExercises } from "./logic/exercises/loadExercises.js";
+
 import { initFilterExercise, applyFilter } from "./logic/exercises/filterExercises.js";
 import { initDeleteLogic } from "./logic/deleteLogic.js";
 import { initEditLogic } from "./logic/editLogic.js";
-import { saveExercises } from "./logic/exercises/saveExercises.js";
+
 import { initOpenPlanLogic } from "./logic/trainingPlans/openTrainingPlan.js";
 import { initAddLogic } from "./logic/addLogic.js";
 
@@ -17,6 +17,10 @@ import { loadTrainingPlan } from "./logic/trainingPlans/loadTrainingPlans.js";
 
 // UI
 import { initCreateExercise } from "./ui/initCreateExercise.js";
+
+// Storage
+import { saveExercises, loadExercises } from "./storage/exerciseStorage.js";
+
 // ----
 import { showExercises } from "./ui/renderExercises.js";
 import { showTrainingPlans } from "./ui/renderTrainingPlans.js"

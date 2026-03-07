@@ -1,5 +1,12 @@
 // MODELS
-import type { Exercise } from "../../models/Exercise";
+import type { Exercise } from "../models/Exercise";
+
+
+
+// Save exercises
+export let saveExercises = (allExercises : Array<Exercise>) => {
+    localStorage.setItem("exerciseList", JSON.stringify(allExercises));
+}
 
 // Load exercises or [], if empty
 export const loadExercises = async () => {
