@@ -1,9 +1,12 @@
 // Models
-import type { Exercise } from "../models/Exercise.js";
-import { musclegroupLabels } from "../models/MusclegroubLabels.js";
+import type { Exercise } from "../../models/Exercise.js";
+import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
+
+
+const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
+
 
 // Displays loaded Exercises in the DOM
-const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
 export let showExercises = (exercisesArray : Exercise[]) => {
     exerciseList.innerHTML = "";
     exercisesArray.forEach((ex : Exercise ) => {

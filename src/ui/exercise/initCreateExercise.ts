@@ -1,8 +1,8 @@
 // MODELS
-import { Musclegroup } from "../models/Musclegroup.js";
+import { Musclegroup } from "../../models/Musclegroup.js";
 
 // Logic
-import { createExercise } from "../logic/exerciseService.js";
+import { createExercise } from "../../logic/exerciseService.js";
 
 
 // DOM Variables
@@ -35,4 +35,4 @@ export let initCreateExercise = () => {
 let emptyInput = () => {
     createExerciseDom.name.value = "";
     createExerciseDom.musclegroup.value = "";
-};
+}; 

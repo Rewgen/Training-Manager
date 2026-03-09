@@ -4,8 +4,7 @@ import type { Exercise } from "./models/Exercise.js";
 import type { TrainingPlan } from "./models/TrainingPlan.js";
 // LOGIC
 
-import { initFilterExercise, applyFilter } from "./logic/exercises/filterExercises.js";
-import { initDeleteLogic } from "./logic/deleteLogic.js";
+
 import { initEditLogic } from "./logic/editLogic.js";
 
 import { initOpenPlanLogic } from "./logic/trainingPlans/openTrainingPlan.js";
@@ -16,29 +15,46 @@ import { saveTrainingPlan } from "./logic/trainingPlans/saveTrainingPlans.js";
 import { loadTrainingPlan } from "./logic/trainingPlans/loadTrainingPlans.js";
 
 // UI
-import { initCreateExercise } from "./ui/initCreateExercise.js";
+import { initCreateExercise } from "./ui/exercise/initCreateExercise.js";
+import { initFilterExecises, initDeleteExercise } from "./ui/exercise/initExercisesEvents.js";
 
 // Storage
 import { saveExercises, loadExercises } from "./storage/exerciseStorage.js";
 
 // ----
-import { showExercises } from "./ui/renderExercises.js";
+import { showExercises } from "./ui/exercise/renderExercises.js";
 import { showTrainingPlans } from "./ui/renderTrainingPlans.js"
 import { initUpdateView } from "./ui/updateView.js";
 // ---------
 
 
+// global variabels
 export let allExercises: Exercise[] = [];
 let allTrainingPlans:TrainingPlan[] = [];
 
 
-// UI control
-initCreateExercise();
+// load and start programm
+let start = async () =>{
+    allExercises = await loadExercises();
+    allTrainingPlans = loadTrainingPlan();
 
-// Logic control
+    showExercises(allExercises);
+}
 
-// Storage Control
+// init eventListener
+let init = () => {
+    initCreateExercise();
+    initFilterExecises();
+    initDeleteExercise();
+}
 
+start();
+init();
+
+
+// Update-Functions
+export let updateView = (exercises: Exercise[]) => showExercises(exercises);
+export let updateStorage = (exercises: Exercise[]) => saveExercises(exercises);
 
 
 
@@ -47,18 +63,14 @@ initCreateExercise();
 
 // Load Data
 
-let init = async () => {
+let init2 = async () => {
 
-    allExercises = await loadExercises();
-    allTrainingPlans = loadTrainingPlan();
-    initFilterExercise(allExercises);
-    initDeleteLogic(allExercises, allTrainingPlans);
+
+
+    // ------
+
+
     initEditLogic(allExercises, allTrainingPlans);
-
-
-
-
-    showExercises(allExercises);
 
     initAddTrainingPlan(allExercises, allTrainingPlans);
     showTrainingPlans(allExercises, allTrainingPlans);
@@ -71,8 +83,7 @@ let init = async () => {
 
 export let updateExercises = function(allExercises:Exercise[]){   
     saveExercises(allExercises);
-    let exercises = applyFilter(allExercises);
-    showExercises(exercises);
+    showExercises(allExercises);
 };
 
 export let updateTrainingPlans = function (allExercises:Exercise[], allTrainingPlans:TrainingPlan[]) {
@@ -82,7 +93,7 @@ export let updateTrainingPlans = function (allExercises:Exercise[], allTrainingP
 
 
 
-init();
+init2();
 
 
 
