@@ -1,10 +1,10 @@
 // Main
-import { updateExercises } from "../main.js";
-import { updateTrainingPlans } from "../main.js";
+import { updateExercises } from "../../main.js";
+import { updateTrainingPlans } from "../../main.js";
 
 // Models
-import type { Exercise } from "../models/Exercise.js";
-import type { TrainingPlan } from "../models/TrainingPlan.js";
+import type { Exercise } from "../../models/Exercise.js";
+import type { TrainingPlan } from "../../models/TrainingPlan.js";
 
 
 

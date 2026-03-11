@@ -1,13 +1,13 @@
 // Main
-import { updateExercises } from "../main.js";
-import { updateTrainingPlans } from "../main.js";
+import { updateExercises } from "../../main.js";
+import { updateTrainingPlans } from "../../main.js";
 
 // Models
-import type { Exercise } from "../models/Exercise.js";
-import type { TrainingPlan } from "../models/TrainingPlan.js";
-import { Musclegroup } from "../models/Musclegroup.js";
+import type { Exercise } from "../../models/Exercise.js";
+import type { TrainingPlan } from "../../models/TrainingPlan.js";
+import { Musclegroup } from "../../models/Musclegroup.js";
 // Logic
-import { musclegroupLabels } from "../models/MusclegroubLabels.js";
+import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
 
 
 // === Add exercises to Training Plans ===

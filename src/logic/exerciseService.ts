@@ -39,9 +39,7 @@ export let applyFilter = (listFilter : string) => {
 };
 
 
-/** Delete Exercise by submitted id
- * @param exerciseId submitted id as String
- */
+// Delete Exercise by submitted id
 export let deleteExercise = (exerciseId : string) => {
 
     const numericId = Number(exerciseId);
@@ -53,3 +51,20 @@ export let deleteExercise = (exerciseId : string) => {
     updateView(allExercises);
 }
     
+// Convert submitted Id to Exercise
+export let ConvertToExercise = (exerciseId : string) : Exercise => {
+    let id = Number(exerciseId);
+    let exerciseToEdit = allExercises.find(ex => ex.id === id);
+    if (!exerciseToEdit) {
+        throw new Error(`Übung mit ID ${id} existiert nicht`);
+    };
+    return exerciseToEdit
+}
+
+// Edit Exercise
+export let editExercise = (exerciseToEdit : Exercise, name? : string, musclegroup? : Musclegroup) => {
+    if(name) exerciseToEdit.name = name;
+    if(musclegroup) exerciseToEdit.musclegroup = musclegroup;
+    updateStorage(allExercises);
+    updateView(allExercises);
+};

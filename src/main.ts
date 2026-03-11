@@ -5,10 +5,10 @@ import type { TrainingPlan } from "./models/TrainingPlan.js";
 // LOGIC
 
 
-import { initEditLogic } from "./logic/editLogic.js";
+// import { initEditLogic } from "./logic/editLogic.js";
 
 import { initOpenPlanLogic } from "./logic/trainingPlans/openTrainingPlan.js";
-import { initAddLogic } from "./logic/addLogic.js";
+import { initAddLogic } from "./logic/trainingPlans/addLogic.js";
 
 import { initAddTrainingPlan } from "./logic/trainingPlans/addTrainingPlan.js";
 import { saveTrainingPlan } from "./logic/trainingPlans/saveTrainingPlans.js";
@@ -16,7 +16,7 @@ import { loadTrainingPlan } from "./logic/trainingPlans/loadTrainingPlans.js";
 
 // UI
 import { initCreateExercise } from "./ui/exercise/initCreateExercise.js";
-import { initFilterExecises, initDeleteExercise } from "./ui/exercise/initExercisesEvents.js";
+import { initFilterExecises, initDeleteExercise, initEditExercise } from "./ui/exercise/initExercisesEvents.js";
 
 // Storage
 import { saveExercises, loadExercises } from "./storage/exerciseStorage.js";
@@ -46,6 +46,7 @@ let init = () => {
     initCreateExercise();
     initFilterExecises();
     initDeleteExercise();
+    initEditExercise();
 }
 
 start();
@@ -69,16 +70,12 @@ let init2 = async () => {
 
     // ------
 
-
-    initEditLogic(allExercises, allTrainingPlans);
-
     initAddTrainingPlan(allExercises, allTrainingPlans);
     showTrainingPlans(allExercises, allTrainingPlans);
     initOpenPlanLogic(allExercises, allTrainingPlans);
     initAddLogic(allExercises);
 
     initUpdateView(allExercises, allTrainingPlans);
-
 };
 
 export let updateExercises = function(allExercises:Exercise[]){   
@@ -92,12 +89,7 @@ export let updateTrainingPlans = function (allExercises:Exercise[], allTrainingP
 };
 
 
-
 init2();
-
-
-
-
 
 // ---------------------------------
 
