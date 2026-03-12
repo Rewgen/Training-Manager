@@ -1,17 +1,14 @@
-// Models
-import type { TrainingPlan } from "../models/TrainingPlan.js";
-import type { Exercise } from "../models/Exercise.js";
-import { musclegroupLabels } from "../models/MusclegroubLabels.js";
+// MODELS
+import type { TrainingPlan } from "../../models/TrainingPlan.js";
 
 
 
-export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlans:TrainingPlan[]){
+export let showTrainingPlans = function(trainingPlans:TrainingPlan[]){
 
     const trainingPlanList = document.getElementById("training-plan-list") as HTMLElement;
-
     trainingPlanList.textContent = "";
 
-    allTrainingPlans.forEach(trainPlan => {
+    trainingPlans.forEach(trainPlan => {
         const ul = document.createElement("ul") as HTMLUListElement;
         const heading = document.createElement("h3") as HTMLHeadingElement;
         const deleteButton = createDeleteButton(trainPlan.id) as HTMLButtonElement;
@@ -25,21 +22,7 @@ export let showTrainingPlans = function(allExercises:Exercise[], allTrainingPlan
         ul.appendChild(deleteButton);
         ul.appendChild(editButton);
 
-        // convert and add exercises to Training Plan
-        // let exercises:Exercise[] = allExercises.filter(ex => trainPlan.exerciseIds.includes(ex.id));
-
-
-        // exercises.forEach(ex => {
-            // later use Plan previev
-            // let germanLabel = musclegroupLabels[ex.musclegroup];
-
-            // let li = document.createElement("li");
-            // li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`; 
-            
-            
-            // ul.appendChild(li);
-        // });
-
+        // add Training Plan to list
         trainingPlanList.appendChild(ul);
 
     });
@@ -61,3 +44,24 @@ let createOpenButton = function(TrainPlanId : number):HTMLButtonElement{
     editButton.textContent = "Plan anzeigen";
     return editButton
 };
+
+
+
+
+
+
+
+        // convert and add exercises to Training Plan
+        // let exercises:Exercise[] = allExercises.filter(ex => trainPlan.exerciseIds.includes(ex.id));
+
+
+        // exercises.forEach(ex => {
+            // later use Plan previev
+            // let germanLabel = musclegroupLabels[ex.musclegroup];
+
+            // let li = document.createElement("li");
+            // li.textContent = `${ex.name} - ${germanLabel} - ${ex.sets} x ${ex.reps}`; 
+            
+            
+            // ul.appendChild(li);
+        // });

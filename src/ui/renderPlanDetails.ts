@@ -4,7 +4,7 @@ import type { TrainingPlan } from "../models/TrainingPlan.js";
 import type { PlanExercise } from "../models/PlanExercise.js";
 
 // Logic
-import { saveTrainingPlan } from "../logic/trainingPlans/saveTrainingPlans.js";
+import { saveTrainingPlans } from "../storage/trainingPlanStorage.js";
 
 
 const getDomElement = {
@@ -61,7 +61,7 @@ export let showPlanDetails = function(currentTrainingPlan:TrainingPlan, allExerc
         };
 
         currentTrainingPlan.exercises.push(newPlanExercise);
-        saveTrainingPlan(allTrainingPlans); // logic folder
+        saveTrainingPlans(allTrainingPlans); // logic folder
         renderPlanExercises(currentTrainingPlan.exercises, allExercises);
         getDomElement.planAddExercisedialog.close();
     });

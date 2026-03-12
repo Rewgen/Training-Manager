@@ -3,22 +3,18 @@ import type { Exercise } from "../../models/Exercise.js";
 import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
 
 
-const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
-
 
 // Displays loaded Exercises in the DOM
-export let showExercises = (exercisesArray : Exercise[]) => {
+export let showExercises = (exercises : Exercise[]) => {
+    const exerciseList = document.getElementById("exercise-list") as HTMLUListElement;
     exerciseList.innerHTML = "";
-    exercisesArray.forEach((ex : Exercise ) => {
+    exercises.forEach((ex : Exercise ) => {
 
         let germanLabel = musclegroupLabels[ex.musclegroup];
-
         let li = document.createElement("li");
         li.textContent = `${ex.name} - ${germanLabel}`;
-        
         let deleteButton = createDeleteButton(ex.id);
         li.appendChild(deleteButton);
-
         let editButton = createEditButton(ex.id);
         li.appendChild(editButton);
 

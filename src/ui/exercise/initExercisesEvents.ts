@@ -4,7 +4,7 @@ import { Musclegroup } from "../../models/Musclegroup.js";
 import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
 
 // LOGIC
-import { applyFilter, deleteExercise, ConvertToExercise, editExercise } from "../../logic/exerciseService.js";
+import { applyFilter, deleteExercise, convertToExercise, editExercise } from "../../logic/exerciseService.js";
 
 
 
@@ -38,7 +38,7 @@ export let initEditExercise = function(){
         if(!(exerciseId)) return;
 
         // get Exercise to edit
-        let exerciseToEdit : Exercise = ConvertToExercise(exerciseId); // -> Logic
+        let exerciseToEdit : Exercise = convertToExercise(exerciseId); // -> Logic
         let li = document.querySelector(`button[data-id="${exerciseToEdit.id}"]`)?.closest("li");
         if(!li) return;
         li.textContent = "";

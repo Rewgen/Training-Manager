@@ -4,11 +4,10 @@ import type { Exercise } from "../models/Exercise";
 
 // MAIN
 import { allExercises } from "../main.js"; // variabels
-import { updateStorage, updateView } from "../main.js"; // save and apply changes
+import { updateStorageExercise, updateViewExercise } from "../main.js"; // save and apply changes
 
 
 export let createExercise = (exerciseName: string, exerciseMusclegroup: Musclegroup) => {
-    
     let newExercise: Exercise = {
         id : Date.now(),
         name : exerciseName,
@@ -16,14 +15,14 @@ export let createExercise = (exerciseName: string, exerciseMusclegroup: Musclegr
     };
     allExercises.push(newExercise);
 
-    updateStorage(allExercises);
-    updateView(allExercises);
+    updateStorageExercise(allExercises);
+    updateViewExercise(allExercises);
 };
 
 
 
 /** activate filter and submit selection for rendering 
- * @param listFilter submitted selction from DOM
+ * @param listFilter submitted selection from DOM
  */
 export let applyFilter = (listFilter : string) => {
     let exercises = [];
@@ -35,7 +34,7 @@ export let applyFilter = (listFilter : string) => {
             const filtered = allExercises.filter(ex => ex.musclegroup === selectedValue) as Array<Exercise>;
             exercises = filtered;
         }
-    updateView(exercises);
+    updateViewExercise(exercises);
 };
 
 
@@ -47,12 +46,12 @@ export let deleteExercise = (exerciseId : string) => {
     allExercises.length = 0;
     allExercises.push(...updatedExercises);
 
-    updateStorage(allExercises);
-    updateView(allExercises);
+    updateStorageExercise(allExercises);
+    updateViewExercise(allExercises);
 }
     
 // Convert submitted Id to Exercise
-export let ConvertToExercise = (exerciseId : string) : Exercise => {
+export let convertToExercise = (exerciseId : string) : Exercise => {
     let id = Number(exerciseId);
     let exerciseToEdit = allExercises.find(ex => ex.id === id);
     if (!exerciseToEdit) {
@@ -65,6 +64,6 @@ export let ConvertToExercise = (exerciseId : string) : Exercise => {
 export let editExercise = (exerciseToEdit : Exercise, name? : string, musclegroup? : Musclegroup) => {
     if(name) exerciseToEdit.name = name;
     if(musclegroup) exerciseToEdit.musclegroup = musclegroup;
-    updateStorage(allExercises);
-    updateView(allExercises);
+    updateStorageExercise(allExercises);
+    updateViewExercise(allExercises);
 };
