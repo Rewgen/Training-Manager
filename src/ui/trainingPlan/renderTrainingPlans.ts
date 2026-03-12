@@ -33,6 +33,7 @@ let createDeleteButton = function(TrainPlanId : number):HTMLButtonElement{
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.dataset.id = TrainPlanId.toString();
+    deleteButton.dataset.type = "trainingPlan";
     deleteButton.textContent = "Löschen";
     return deleteButton
 };
@@ -41,6 +42,7 @@ let createOpenButton = function(TrainPlanId : number):HTMLButtonElement{
     let editButton = document.createElement("button");
     editButton.classList.add("open-plan-button");
     editButton.dataset.id = TrainPlanId.toString();
+    editButton.dataset.type = "trainingPlan";
     editButton.textContent = "Plan anzeigen";
     return editButton
 };

@@ -27,6 +27,7 @@ let createDeleteButton = function(exerciseId : number):HTMLButtonElement{
     let deleteButton = document.createElement("button");
     deleteButton.classList.add("delete-button");
     deleteButton.dataset.id = exerciseId.toString();
+    deleteButton.dataset.type = "exercise";
     deleteButton.textContent = "Löschen";
     return deleteButton
 };
@@ -35,6 +36,7 @@ let createEditButton = function(exerciseId : number):HTMLButtonElement{
     let editButton = document.createElement("button");
     editButton.classList.add("edit-button");
     editButton.dataset.id = exerciseId.toString();
+    editButton.dataset.type = "exercise";
     editButton.textContent = "Bearbeiten";
     return editButton
 };

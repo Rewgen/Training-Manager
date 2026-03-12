@@ -21,6 +21,8 @@ export let initDeleteExercise = () => {
         if (!(event.target instanceof HTMLElement)) return;
         const deleteButton = event.target.closest(".delete-button");
         if (!(deleteButton instanceof HTMLElement)) return;
+        const type = deleteButton.dataset.type;
+        if (type !== "exercise") return; // stops, if button is for Training Plan
         const exerciseId = deleteButton.dataset.id;
         if (!exerciseId) return; 
         deleteExercise(exerciseId); // -> Logic

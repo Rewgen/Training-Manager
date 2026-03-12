@@ -22,6 +22,7 @@ import { showExercises } from "./ui/exercise/renderExercises.js";
     // Training Plans
 import { initCreateTrainingPlan } from "./ui/trainingPlan/initCreateTrainingPlan.js";
 import { showTrainingPlans } from "./ui/trainingPlan/renderTrainingPlans.js";
+import { initDeleteTrainingPlan } from "./ui/trainingPlan/initTrainingPlanEvents.js";
 
 // LOGIC
 
@@ -51,6 +52,8 @@ let init = () => {
     initDeleteExercise();
     initEditExercise();
     initCreateTrainingPlan();
+    initDeleteTrainingPlan();
+    
 }
 
 start();
