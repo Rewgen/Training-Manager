@@ -1,7 +1,9 @@
-import { Musclegroup } from "./Musclegroup.js";
+import { MuscleGroup } from "./MuscleGroup.js";
 
 export interface Exercise {
     id : number,
     name: string,
-    musclegroup : Musclegroup
+    muscleGroup : MuscleGroup
 }
+
+// import { MuscleGroup } from "./MuscleGroup.js";

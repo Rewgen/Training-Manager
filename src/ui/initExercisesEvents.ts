@@ -1,7 +1,7 @@
 // MODELS
 import type { Exercise } from "../models/Exercise.js";
-import { Musclegroup } from "../models/Musclegroup.js";
-import { musclegroupLabels } from "../models/MusclegroubLabels.js";
+import { MuscleGroup } from "../models/MuscleGroup.js";
+import { MuscleGroupLabels } from "../models/MuscleGroubLabels.js";
 
 // LOGIC
 import { createExercise, applyFilter, deleteExercise, convertToExercise, editExercise } from "../logic/exerciseService.js";
@@ -17,19 +17,21 @@ export let initCreateExercise = () => {
         newExPopUp : document.getElementById("new-exercise-dialog") as HTMLDialogElement,
         container : document.getElementById("add-exercise-container") as HTMLFormElement,
         name : document.getElementById("add-exercise-name") as HTMLInputElement,
-        musclegroup : document.getElementById("add-exercise-musclegroup") as HTMLInputElement
+        muscleGroup : document.getElementById("add-exercise-muscleGroup") as HTMLInputElement
     };
 
     createExerciseDom.newExBtn.onclick = () => createExerciseDom.newExPopUp.showModal();
     createExerciseDom.container.addEventListener("submit", (event) => {
+        
         event.preventDefault();
+        console.log("test");
         let name: string = createExerciseDom.name.value;
-        let musclegroup = createExerciseDom.musclegroup.value as Musclegroup;
+        let muscleGroup = createExerciseDom.muscleGroup.value as MuscleGroup;
 
-        createExercise(name, musclegroup);
+        createExercise(name, muscleGroup);
 
         createExerciseDom.name.value = "";
-        createExerciseDom.musclegroup.value = "";
+        createExerciseDom.muscleGroup.value = "";
     })
 };
 
@@ -79,26 +81,26 @@ export let initEditExercise = function(){
         // change values
         const changeName = document.createElement("input");
         changeName.value = exerciseToEdit.name;
-        const changeMusclegroup = document.createElement("select");
-        Object.values(Musclegroup).forEach(group => {
+        const changeMuscleGroup = document.createElement("select");
+        Object.values(MuscleGroup).forEach(group => {
             let opt = document.createElement("option");
             if(group === "All") return;
-            opt.textContent = musclegroupLabels[group];
+            opt.textContent = MuscleGroupLabels[group];
             opt.value = group;
-            if(group === exerciseToEdit.musclegroup) opt.selected = true;
-            changeMusclegroup.appendChild(opt);
+            if(group === exerciseToEdit.muscleGroup) opt.selected = true;
+            changeMuscleGroup.appendChild(opt);
         })
 
         // Save Button
         let saveBtn = document.createElement("button");
         saveBtn.textContent = "Speichern";
-        saveBtn.addEventListener("click", () => editExercise(exerciseToEdit, changeName.value, changeMusclegroup.value as Musclegroup)); // -> Logic
+        saveBtn.addEventListener("click", () => editExercise(exerciseToEdit, changeName.value, changeMuscleGroup.value as MuscleGroup)); // -> Logic
 
         // Return Button
         let returnBtn = document.createElement("button");
         returnBtn.textContent = "Abbrechen";
         returnBtn.addEventListener("click", () => editExercise(exerciseToEdit)); // -> Logic
         
-        li.append(changeName, changeMusclegroup, saveBtn, returnBtn);
+        li.append(changeName, changeMuscleGroup, saveBtn, returnBtn);
     })
 };

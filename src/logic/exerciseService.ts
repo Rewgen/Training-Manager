@@ -1,5 +1,5 @@
 // MODELS
-import { Musclegroup } from "../models/Musclegroup.js";
+import { MuscleGroup } from "../models/MuscleGroup.js";
 import type { Exercise } from "../models/Exercise";
 
 // MAIN
@@ -7,11 +7,11 @@ import { updateStorageExercise, updateDisplayedExercise } from "../main.js"; // 
 import { allExercises } from "../main.js"; // variabels
 
 
-export let createExercise = (exerciseName: string, exerciseMusclegroup: Musclegroup) => {
+export let createExercise = (exerciseName: string, exerciseMuscleGroup: MuscleGroup) => {
     let newExercise: Exercise = {
         id : Date.now(),
         name : exerciseName,
-        musclegroup : exerciseMusclegroup,
+        muscleGroup : exerciseMuscleGroup,
     };
     allExercises.push(newExercise);
 
@@ -26,12 +26,12 @@ export let createExercise = (exerciseName: string, exerciseMusclegroup: Musclegr
  */
 export let applyFilter = (listFilter : string) => {
     let exercises = [];
-    const selectedValue = listFilter as Musclegroup;
+    const selectedValue = listFilter as MuscleGroup;
         // show filtered exercises in DOM
-        if (selectedValue === Musclegroup.All) {
+        if (selectedValue === MuscleGroup.All) {
             exercises = allExercises;
         } else {
-            const filtered = allExercises.filter(ex => ex.musclegroup === selectedValue) as Array<Exercise>;
+            const filtered = allExercises.filter(ex => ex.muscleGroup === selectedValue) as Array<Exercise>;
             exercises = filtered;
         }
     updateDisplayedExercise(exercises);
@@ -66,9 +66,9 @@ export let convertToExercise = (exerciseId : string) : Exercise => {
 
 
 // Edit Exercise
-export let editExercise = (exerciseToEdit : Exercise, name? : string, musclegroup? : Musclegroup) => {
+export let editExercise = (exerciseToEdit : Exercise, name? : string, muscleGroup? : MuscleGroup) => {
     if(name) exerciseToEdit.name = name;
-    if(musclegroup) exerciseToEdit.musclegroup = musclegroup;
+    if(muscleGroup) exerciseToEdit.muscleGroup = muscleGroup;
     updateStorageExercise(allExercises);
     updateDisplayedExercise(allExercises);
 };

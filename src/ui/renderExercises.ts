@@ -1,6 +1,6 @@
 // Models
 import type { Exercise } from "../models/Exercise.js";
-import { musclegroupLabels } from "../models/MusclegroubLabels.js";
+import { MuscleGroupLabels } from "../models/MuscleGroubLabels.js";
 
 
 
@@ -10,7 +10,7 @@ export let showExercises = (exercises : Exercise[]) => {
     exerciseList.innerHTML = "";
     exercises.forEach((ex : Exercise ) => {
 
-        let germanLabel = musclegroupLabels[ex.musclegroup];
+        let germanLabel = MuscleGroupLabels[ex.muscleGroup];
         let li = document.createElement("li");
         li.textContent = `${ex.name} - ${germanLabel}`;
         let deleteButton = createDeleteButton(ex.id);
