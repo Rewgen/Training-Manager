@@ -1,9 +1,11 @@
-// Models
+// MODELS
 import type { TrainingPlan } from "../models/TrainingPlan.js";
+import type { ViewMode } from "../models/ViewMode.js";
+import type { PlanExercise } from "../models/PlanExercise.js";
 
-// Main
+// MAIN
+import { updateStorageTrainingPlan, updateDisplayedTrainingPlan, updateView } from "../main.js";
 import { allTrainingPlans } from "../main.js";
-import { updateStorageTrainingPlan, updateViewTrainingPlan } from "../main.js";
 
 
 // add new Training Plan
@@ -16,7 +18,7 @@ export let createTrainingPlan = function(planName:string){
     allTrainingPlans.push(newTrainingPlan)
 
     updateStorageTrainingPlan(allTrainingPlans);
-    updateViewTrainingPlan(allTrainingPlans);
+    updateDisplayedTrainingPlan(allTrainingPlans);
 };
 
 
@@ -30,17 +32,31 @@ export let deleteTrainingPlan = (trainingPlanId : string) => {
     allTrainingPlans.push(...updatedExercises);
 
     updateStorageTrainingPlan(allTrainingPlans);
-    updateViewTrainingPlan(allTrainingPlans);
+    updateDisplayedTrainingPlan(allTrainingPlans);
 }
 
 
+export let openTrainingPlan = (trainingPlanId : string) => {
+    
+    const numericId = Number(trainingPlanId);
+
+    // get the right training plan
+    const selectedPlan = allTrainingPlans.find(plan  => numericId === plan.id);
+    if(!selectedPlan) return
+
+    const view : ViewMode = "planDetails";
+    updateView(view, selectedPlan);
+}
 
 
+export let addExerciseToPlan = (selectedPlan : TrainingPlan, selectedExerciseId : number, sets : number, reps : number, pause : number) => {
+    const newPlanExercise: PlanExercise = {
+        exerciseId: selectedExerciseId,
+        sets: sets,
+        reps: reps,
+        pause: pause
+    };
 
-
-
-
-// Init Training Plan logic
-// let allTrainingPlans : TrainingPlan[] = [];
-
-    // allTrainingPlans = loadedTrainingPlans;
+    selectedPlan.exercises.push(newPlanExercise);
+    updateStorageTrainingPlan(allTrainingPlans);
+};

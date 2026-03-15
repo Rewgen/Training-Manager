@@ -1,35 +1,27 @@
-// LOGIC
-import { initUpdateView } from "./ui/updateView.js";
-
-import { initOpenPlanLogic } from "./logic/trainingPlans/openTrainingPlan.js";
-import { initAddLogic } from "./logic/trainingPlans/addLogic.js";
-
-
-
-
-
-// -------------
-
 // MODELS
 import type { Exercise } from "./models/Exercise.js";
 import type { TrainingPlan } from "./models/TrainingPlan.js";
+import type { ViewMode } from "./models/ViewMode.js";
+
 
 // UI
     // Exercises
-import { initCreateExercise } from "./ui/exercise/initCreateExercise.js";
-import { initFilterExecises, initDeleteExercise, initEditExercise } from "./ui/exercise/initExercisesEvents.js";
-import { showExercises } from "./ui/exercise/renderExercises.js";
+import { initCreateExercise, initFilterExecises, initDeleteExercise, initEditExercise } from "./ui/initExercisesEvents.js";
+import { showExercises } from "./ui/renderExercises.js";
     // Training Plans
-import { initCreateTrainingPlan } from "./ui/trainingPlan/initCreateTrainingPlan.js";
-import { showTrainingPlans } from "./ui/trainingPlan/renderTrainingPlans.js";
-import { initDeleteTrainingPlan } from "./ui/trainingPlan/initTrainingPlanEvents.js";
-
-// LOGIC
+import { showTrainingPlans } from "./ui/renderTrainingPlans.js";
+import { initCreateTrainingPlan, initDeleteTrainingPlan, initOpenTrainingPlan } from "./ui/initTrainingPlanEvents.js";
+import { changeView } from "./ui/changeView.js";
+    // Plan Deatils
+import { showPlanDetails } from "./ui/renderPlanDetails.js";
+    // View
+import { initChangeView } from "./ui/changeView.js"; 
 
 
 // STORAGE
 import { saveExercises, loadExercises } from "./storage/exerciseStorage.js";
 import { saveTrainingPlans, loadTrainingPlans } from "./storage/trainingPlanStorage.js";
+
 
 
 // global variabels
@@ -43,7 +35,9 @@ let start = async () =>{
     allTrainingPlans = loadTrainingPlans();
     showExercises(allExercises);
     showTrainingPlans(allTrainingPlans);
+    changeView("exercises");
 }
+
 
 // init eventListener
 let init = () => {
@@ -51,64 +45,25 @@ let init = () => {
     initFilterExecises();
     initDeleteExercise();
     initEditExercise();
+
     initCreateTrainingPlan();
     initDeleteTrainingPlan();
-    
+    initOpenTrainingPlan();
+
+    initChangeView();
 }
+
 
 start();
 init();
 
 
 // Update-Functions
-export let updateViewExercise = (exercises: Exercise[]) => showExercises(exercises);
+export let updateDisplayedExercise = (exercises: Exercise[]) => showExercises(exercises);
 export let updateStorageExercise = (exercises: Exercise[]) => saveExercises(exercises);
 export let updateStorageTrainingPlan = (trainingPlans : TrainingPlan []) => saveTrainingPlans(trainingPlans);
-export let updateViewTrainingPlan = (trainingPlans : TrainingPlan []) => showTrainingPlans(trainingPlans);
-
-
-
-
-
-
-
-
-
-
-
-// ---------
-
-// Load Data
-
-let init2 = async () => {
-
-
-
-    // ------
-    initOpenPlanLogic(allExercises, allTrainingPlans);
-    initAddLogic(allExercises);
-
-    initUpdateView(allExercises, allTrainingPlans);
+export let updateDisplayedTrainingPlan = (trainingPlans : TrainingPlan []) => showTrainingPlans(trainingPlans);
+export let updateView = (viewMode : ViewMode, selectedPlan? : TrainingPlan) => {
+    changeView(viewMode);
+    if (selectedPlan) showPlanDetails(selectedPlan);
 };
-
-export let updateExercises = function(allExercises:Exercise[]){   
-    saveExercises(allExercises);
-    showExercises(allExercises);
-};
-
-export let updateTrainingPlans = function (allExercises:Exercise[], allTrainingPlans:TrainingPlan[]) {
-    saveTrainingPlans(allTrainingPlans);
-    showTrainingPlans(allTrainingPlans)
-};
-
-
-init2();
-
-// ---------------------------------
-
-
-
-
-
-
-

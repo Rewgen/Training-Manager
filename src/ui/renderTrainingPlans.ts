@@ -1,5 +1,5 @@
 // MODELS
-import type { TrainingPlan } from "../../models/TrainingPlan.js";
+import type { TrainingPlan } from "../models/TrainingPlan.js";
 
 
 

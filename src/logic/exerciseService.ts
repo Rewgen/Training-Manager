@@ -3,8 +3,8 @@ import { Musclegroup } from "../models/Musclegroup.js";
 import type { Exercise } from "../models/Exercise";
 
 // MAIN
+import { updateStorageExercise, updateDisplayedExercise } from "../main.js"; // save and apply changes
 import { allExercises } from "../main.js"; // variabels
-import { updateStorageExercise, updateViewExercise } from "../main.js"; // save and apply changes
 
 
 export let createExercise = (exerciseName: string, exerciseMusclegroup: Musclegroup) => {
@@ -16,7 +16,7 @@ export let createExercise = (exerciseName: string, exerciseMusclegroup: Musclegr
     allExercises.push(newExercise);
 
     updateStorageExercise(allExercises);
-    updateViewExercise(allExercises);
+    updateDisplayedExercise(allExercises);
 };
 
 
@@ -34,8 +34,9 @@ export let applyFilter = (listFilter : string) => {
             const filtered = allExercises.filter(ex => ex.musclegroup === selectedValue) as Array<Exercise>;
             exercises = filtered;
         }
-    updateViewExercise(exercises);
+    updateDisplayedExercise(exercises);
 };
+
 
 
 // Delete Exercise by submitted id
@@ -47,9 +48,11 @@ export let deleteExercise = (exerciseId : string) => {
     allExercises.push(...updatedExercises);
 
     updateStorageExercise(allExercises);
-    updateViewExercise(allExercises);
+    updateDisplayedExercise(allExercises);
 }
-    
+
+
+
 // Convert submitted Id to Exercise
 export let convertToExercise = (exerciseId : string) : Exercise => {
     let id = Number(exerciseId);
@@ -60,10 +63,12 @@ export let convertToExercise = (exerciseId : string) : Exercise => {
     return exerciseToEdit
 }
 
+
+
 // Edit Exercise
 export let editExercise = (exerciseToEdit : Exercise, name? : string, musclegroup? : Musclegroup) => {
     if(name) exerciseToEdit.name = name;
     if(musclegroup) exerciseToEdit.musclegroup = musclegroup;
     updateStorageExercise(allExercises);
-    updateViewExercise(allExercises);
+    updateDisplayedExercise(allExercises);
 };

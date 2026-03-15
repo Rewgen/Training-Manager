@@ -1,11 +1,37 @@
 // MODELS
-import type { Exercise } from "../../models/Exercise.js";
-import { Musclegroup } from "../../models/Musclegroup.js";
-import { musclegroupLabels } from "../../models/MusclegroubLabels.js";
+import type { Exercise } from "../models/Exercise.js";
+import { Musclegroup } from "../models/Musclegroup.js";
+import { musclegroupLabels } from "../models/MusclegroubLabels.js";
 
 // LOGIC
-import { applyFilter, deleteExercise, convertToExercise, editExercise } from "../../logic/exerciseService.js";
+import { createExercise, applyFilter, deleteExercise, convertToExercise, editExercise } from "../logic/exerciseService.js";
 
+
+
+// initialise Dialog and eventListener für new Exercise
+export let initCreateExercise = () => {
+
+    // DOM Variables
+    const createExerciseDom = {
+        newExBtn : document.getElementById("new-exercise") as HTMLButtonElement,
+        newExPopUp : document.getElementById("new-exercise-dialog") as HTMLDialogElement,
+        container : document.getElementById("add-exercise-container") as HTMLFormElement,
+        name : document.getElementById("add-exercise-name") as HTMLInputElement,
+        musclegroup : document.getElementById("add-exercise-musclegroup") as HTMLInputElement
+    };
+
+    createExerciseDom.newExBtn.onclick = () => createExerciseDom.newExPopUp.showModal();
+    createExerciseDom.container.addEventListener("submit", (event) => {
+        event.preventDefault();
+        let name: string = createExerciseDom.name.value;
+        let musclegroup = createExerciseDom.musclegroup.value as Musclegroup;
+
+        createExercise(name, musclegroup);
+
+        createExerciseDom.name.value = "";
+        createExerciseDom.musclegroup.value = "";
+    })
+};
 
 
 
@@ -14,6 +40,8 @@ export let initFilterExecises = () => {
     const exerciseListFilter = document.getElementById("exercise-list-filter") as HTMLSelectElement;
     exerciseListFilter.addEventListener("change", async () => applyFilter(exerciseListFilter.value)); // -> Logic
 };
+
+
 
 // delete event delegation
 export let initDeleteExercise = () => {
@@ -29,6 +57,8 @@ export let initDeleteExercise = () => {
     })
 };
 
+
+
 // edit Exercise
 export let initEditExercise = function(){
     document.addEventListener("click", (event) => {
@@ -41,6 +71,7 @@ export let initEditExercise = function(){
 
         // get Exercise to edit
         let exerciseToEdit : Exercise = convertToExercise(exerciseId); // -> Logic
+        
         let li = document.querySelector(`button[data-id="${exerciseToEdit.id}"]`)?.closest("li");
         if(!li) return;
         li.textContent = "";

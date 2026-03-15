@@ -1,10 +1,14 @@
-// Models
+// MODELS
 import type { Exercise } from "../models/Exercise.js";
 import type { TrainingPlan } from "../models/TrainingPlan.js";
 import type { PlanExercise } from "../models/PlanExercise.js";
 
-// Logic
-import { saveTrainingPlans } from "../storage/trainingPlanStorage.js";
+// LOGIC
+import { addExerciseToPlan } from "../logic/trainingPlanService.js";
+
+// MAIN
+import { allExercises } from "../main.js";
+
 
 
 const getDomElement = {
@@ -21,64 +25,63 @@ const getDomElement = {
     pauseInput : document.getElementById("pause") as HTMLInputElement
 };
 
-// Create Dom Elements
+// Create heading and add-exercise-btn (outside of the function, to avoid multiple creations)
 const heading = document.createElement("h3") as HTMLHeadingElement;
 const addBtn = document.createElement("button") as HTMLButtonElement;
 addBtn.classList.add("add-exercise-button");
 addBtn.textContent = "Übung hinzufügen";
 
-// variable for exercise Id
+// variabel to get origin exercise -> getting set by clicking exerciseBtn -> renderExerciseButtons()
 let selectedExerciseId: number;
 
 
-export let showPlanDetails = function(currentTrainingPlan:TrainingPlan, allExercises:Exercise[], allTrainingPlans:TrainingPlan[]){
+
+// render all plan details (heading, button, exercsies)
+export let showPlanDetails = function(selectedPlan:TrainingPlan){
 
     // set name
-    heading.textContent = currentTrainingPlan.name;
+    heading.textContent = selectedPlan.name;
     // create button for add Exercises
-    addBtn.dataset.id = currentTrainingPlan.toString();
     getDomElement.trainingPlanDetails.prepend(heading, addBtn);
 
     // show exercises in selected plan overview
-    renderPlanExercises(currentTrainingPlan.exercises, allExercises);
+    renderPlanExercises(selectedPlan.exercises);
 
-    // show Exercises for adding as Dialog
+    // open dialog for adding exercise
     addBtn.addEventListener("click", () => {
         renderExerciseButtons(allExercises);
         getDomElement.planAddExercisedialog.showModal();
     })
     
-    // add, save and render exercise in selected training Plan 
+    // add selected exercise from dialog in selected training Plan 
     getDomElement.saveExerciseBtn.addEventListener("click", () => {
-        
+
         if (!selectedExerciseId) return;
 
-        const newPlanExercise: PlanExercise = {
-            exerciseId: selectedExerciseId,
-            sets: getDomElement.setsInput.valueAsNumber,
-            reps: getDomElement.repsInput.valueAsNumber,
-            pause: getDomElement.pauseInput.valueAsNumber
-        };
-
-        currentTrainingPlan.exercises.push(newPlanExercise);
-        saveTrainingPlans(allTrainingPlans); // logic folder
-        renderPlanExercises(currentTrainingPlan.exercises, allExercises);
+        addExerciseToPlan(
+            selectedPlan,
+            selectedExerciseId,
+            getDomElement.setsInput.valueAsNumber, 
+            getDomElement.repsInput.valueAsNumber,
+            getDomElement.pauseInput.valueAsNumber
+        ); // -> Logic
+        renderPlanExercises(selectedPlan.exercises);
         getDomElement.planAddExercisedialog.close();
     });
-
 };
 
 
+
 // render exercises in selected plan
-let renderPlanExercises = function(planExercises : PlanExercise[], allExercises : Exercise[]){
+let renderPlanExercises = function(planExercises : PlanExercise[]){
 
     // empty training plan exercise list
     getDomElement.trainingPlanExercises.textContent = "";
 
     planExercises.forEach(planEx => {
 
-        // get origin exercise 
-        let exercise = allExercises.find(ex => ex.id === planEx.exerciseId)
+        // get origin exercise for name 
+        let exercise = allExercises.find(ex => ex.id === planEx.exerciseId);
         if(!exercise) return
 
         // set li for each exercise
@@ -89,9 +92,9 @@ let renderPlanExercises = function(planExercises : PlanExercise[], allExercises 
 };
 
 
-let renderExerciseButtons = function (allExercises : Exercise[]) {
 
-    // empty add exercise list
+// render exercises as buttons for selecting exercise and add to current training plan
+let renderExerciseButtons = function (allExercises : Exercise[]) {
     getDomElement.planAddExerciseList.innerHTML = "";
 
     // create button for each exercise
@@ -101,24 +104,11 @@ let renderExerciseButtons = function (allExercises : Exercise[]) {
         btn.textContent = ex.name;
         btn.dataset.id = ex.id.toString();
         
-        // set id for exercise and render config
+        // set id for exercise btn and render config
         btn.onclick = () => {
-            // 
             getDomElement.exerciseConfig.classList.remove("hidden");
-            selectExercise(ex.id)
+            selectedExerciseId = ex.id;
         };
-
         getDomElement.planAddExerciseList.appendChild(btn);
     });
 };
-
-
-
-
-// set id for exercise btn
-let selectExercise = function(id: number) {
-    selectedExerciseId = id;
-};
-
-
-
