@@ -1,14 +1,12 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
-    // File Layout
     "rootDir": "./src",
     "outDir": "./dist",
 
     // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "module": "es2020",
-    "target": "es2017",
+    "module": "ESNext",
+    "target": "es2020",
+    "lib": ["ES2020", "DOM"],
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -45,8 +43,7 @@
     "noImplicitAny": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
   },
-    // My Own Options
   "include": ["src"]
 }
