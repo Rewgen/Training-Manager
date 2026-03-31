@@ -9,16 +9,9 @@
 
     <body>
 
+        <div id="root"></div>
+
         <!-- Change View. Exercises/ Training Plans -->
-        <aside>
-            <form id="radio-form">
-                <label for="opt-ex">Übungen</label>
-                <input type="radio" name="view" id="opt-ex" value="exercises" checked>
-                
-                <label for="opt-plan">Trainingspläne</label>
-                <input type="radio" name="view" id="opt-plan" value="plans">
-            </form>
-        </aside>
 
 <!-- ------------------------------ -->
 
@@ -114,7 +107,9 @@
         </section>
 <!-- -------------------------------- -->
 
-        <script type="module" src="./dist/main.js"></script>
+
+        <script type="module" src="./src/main.tsx"></script>
+        <!-- <script type="module" src="./dist/main.js"></script> -->
     </body>
 
 </html>

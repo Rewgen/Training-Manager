@@ -45,6 +45,7 @@ export let showPlanDetails = function(selectedPlan:TrainingPlan){
     getDomElement.trainingPlanDetails.prepend(heading, addBtn);
 
     // show exercises in selected plan overview
+    if (!selectedPlan.exercises) return
     renderPlanExercises(selectedPlan.exercises);
 
     // open dialog for adding exercise
@@ -65,6 +66,7 @@ export let showPlanDetails = function(selectedPlan:TrainingPlan){
             getDomElement.repsInput.valueAsNumber,
             getDomElement.pauseInput.valueAsNumber
         ); // -> Logic
+        if (!selectedPlan.exercises) return
         renderPlanExercises(selectedPlan.exercises);
         getDomElement.planAddExercisedialog.close();
     });
