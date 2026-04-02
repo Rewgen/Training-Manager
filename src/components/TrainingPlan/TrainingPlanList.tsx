@@ -1,4 +1,4 @@
-import type { TrainingPlan } from "../models/TrainingPlan.js";
+import type { TrainingPlan } from "../../models/TrainingPlan.js";
 
 export const TrainingPlanList = ( {trainingPlans} : {trainingPlans: TrainingPlan[]} ) => {
     return (

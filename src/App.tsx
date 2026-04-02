@@ -6,10 +6,11 @@ import type { TrainingPlan } from "./models/TrainingPlan.js";
 // HOOKS
 import { useEffect, useState } from "react"
 // COMPONENTS
-import { ViewSwitcher } from "./ui/ViewSwitcher.js";
-import { TrainingPlanList } from "./ui/TrainingPlanList.js";
-import { ExerciseList } from "./ui/ExerciseList.js";
+import { ViewSwitcher } from "./components/ViewSwitcher.js";
+import { TrainingPlanList } from "./components/TrainingPlan/TrainingPlanList.js";
+import { ExerciseList } from "./components/Exercise/ExerciseList.js";
 import type { Exercise } from "./models/Exercise.js";
+import { ExerciseSection } from "./components/ExerciseSection.js";
 
 
 // platzhalter -> wird später durch allTrainingPlans ersetzt
@@ -30,25 +31,17 @@ const App = () => {
 
     const [view, setView] = useState<ViewMode>("exercises");
 
-    // platzhalter -> wird später durch hook (useEffect) ersetzt
-    const deleteExercise = (id : number) => {
-        let deletedExercise = testExercises.find(plan => plan.id === id);
-        console.log("gelöscht: ", deletedExercise);
-    };
-
-    const editExercise = (id : number) => {
-        let editedExercise = testExercises.find(plan => plan.id === id);
-        console.log("bearbeitet: ", editedExercise);
-    }
-
-
     
+    // platzhalter -> wird später durch hook (useEffect) ersetzt
+
+
 
     return (
         <>
             <ViewSwitcher view={view} onViewChange={setView}/>
-            <ExerciseList exercises={testExercises} onDelete={deleteExercise} onEdit={editExercise}/>
-            <TrainingPlanList trainingPlans={testPlans}/>
+                {view === "exercises" && <ExerciseSection allExercises={testExercises}/>}
+                {view === "plans" && <TrainingPlanList trainingPlans={testPlans}/>}
+            
         </>
     )
 }

@@ -1,17 +1,18 @@
-import type { Exercise } from "../models/Exercise.js";
-import { MuscleGroupLabels } from "../models/MuscleGroubLabels.js";
+import type { Exercise } from "../../models/Exercise.js";
+import { MuscleGroupLabels } from "../../models/MuscleGroubLabels.js";
 
 type Props = {
-    exercises : Exercise[],
+    allExercises : Exercise[],
     onDelete : (id : number) => void,
     onEdit : (id : number) => void
 };
 
-export const ExerciseList = ( {exercises, onDelete, onEdit} : Props ) => {
+export const ExerciseList = ( {allExercises, onDelete, onEdit} : Props ) => {
 
     return (
-        <ul>
-            {exercises.map(exercise => {
+
+        <ul id="exercise-list">
+            {allExercises.map(exercise => {
                 const germanMGLabel = MuscleGroupLabels[exercise.muscleGroup];
                 return (
                     <li key={exercise.id}>
