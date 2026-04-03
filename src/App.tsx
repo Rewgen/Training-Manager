@@ -2,14 +2,13 @@
 import type { ViewMode } from "./models/ViewMode.js";
 import { MuscleGroup } from "./models/MuscleGroup.js";
 import type { TrainingPlan } from "./models/TrainingPlan.js";
+import type { Exercise } from "./models/Exercise.js";
 
 // HOOKS
 import { useEffect, useState } from "react"
 // COMPONENTS
 import { ViewSwitcher } from "./components/ViewSwitcher.js";
-import { TrainingPlanList } from "./components/TrainingPlan/TrainingPlanList.js";
-import { ExerciseList } from "./components/Exercise/ExerciseList.js";
-import type { Exercise } from "./models/Exercise.js";
+import { TrainingPlanSection } from "./components/TrainingPlanSection.js";
 import { ExerciseSection } from "./components/ExerciseSection.js";
 
 
@@ -40,7 +39,7 @@ const App = () => {
         <>
             <ViewSwitcher view={view} onViewChange={setView}/>
                 {view === "exercises" && <ExerciseSection allExercises={testExercises}/>}
-                {view === "plans" && <TrainingPlanList trainingPlans={testPlans}/>}
+                {view === "plans" && <TrainingPlanSection allTrainingPlans={testPlans}/>}
             
         </>
     )

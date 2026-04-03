@@ -10,78 +10,7 @@
     <body>
 
         <div id="root"></div>
-
-        <!-- Change View. Exercises/ Training Plans -->
-
-<!-- ------------------------------ -->
-
-        <!-- Dashboard -->
-        <section id="dashboard-section">
-
-            <!-- First page (LATER) -->
-
-        </section>
-
-<!-- ------------------------------ -->
-
-        <!-- Exercises -->
-        <section>
-
-
-
-            <!-- New Exercise -->
-
-
-
-            <!-- (all/filtered) exercise list -->
-            <ul></ul>
-        </section>
-<!-- -------------------------------- -->
-
-        <!-- Training Plans -->
-        <section id="training-plan-section">
-
-            <!-- (all) training plans -->
-            <div id="training-plans-overview">
-                <h2>Trainingspläne</h2>
-
-                <!-- New Training Plan -->
-                <button id="new-training-plan">Neuer Trainingsplan</button>
-                <dialog id="new-training-plan-dialog">
-                    <form>
-                        <h3>Neuer Trainingsplan</h3>
-                        <input type="text" id="input-train-plan-name" required>
-                        <button id="save-plan-button" type="submit">Speichern</button>
-                    </form>
-                </dialog>
-
-                <!-- Listed Training Plans -->
-                <div id="training-plan-list"></div>
-            </div>
-
-            <!-- Training Plan Details -->
-            <div id="training-plan-details">
-                <ul id="training-plan-exercises"></ul>
-            </div>
-
-            <!-- Add exercises to plan Overview -->
-            <dialog id="training-plan-add-exercises-dialog">
-                
-                <!-- exercises as buttons -->
-                <div id="training-plan-add-exercises-list"></div>
-
-                <div id="exercise-config" class="hidden">
-                    <input type="number" id="sets" placeholder="Sätze" />
-                    <input type="number" id="reps" placeholder="Wiederholungen" />
-                    <input type="number" id="pause" placeholder="Pause" />
-                    <button id="save-exercise">Speichern</button>
-                </div>
-            </dialog>
-
-        </section>
-<!-- -------------------------------- -->
-
-
+        
         <script type="module" src="./src/main.tsx"></script>
         <!-- <script type="module" src="./dist/main.js"></script> -->
     </body>
