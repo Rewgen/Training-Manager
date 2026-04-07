@@ -18,6 +18,5 @@ export const TrainingPlanSection = ({allTrainingPlans} : Props)  => {
             <NewTrainingPlanDialog/>
             <TrainingPlanDetails/>
         </section>
-
     )
 }

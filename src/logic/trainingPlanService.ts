@@ -4,7 +4,7 @@ import type { ViewMode } from "../models/ViewMode.js";
 import type { PlanExercise } from "../models/PlanExercise.js";
 
 // MAIN
-import { updateStorageTrainingPlan, updateDisplayedTrainingPlan, updateView } from "../main.js";
+import { updateStorageTrainingPlan, updateView } from "../main.js";
 import { allTrainingPlans } from "../main.js";
 
 
@@ -18,7 +18,6 @@ export let createTrainingPlan = function(planName:string){
     allTrainingPlans.push(newTrainingPlan)
 
     updateStorageTrainingPlan(allTrainingPlans);
-    updateDisplayedTrainingPlan(allTrainingPlans);
 };
 
 
@@ -32,7 +31,6 @@ export let deleteTrainingPlan = (trainingPlanId : string) => {
     allTrainingPlans.push(...updatedExercises);
 
     updateStorageTrainingPlan(allTrainingPlans);
-    updateDisplayedTrainingPlan(allTrainingPlans);
 }
 
 
@@ -57,6 +55,6 @@ export let addExerciseToPlan = (selectedPlan : TrainingPlan, selectedExerciseId 
         pause: pause
     };
 
-    selectedPlan.exercises.push(newPlanExercise);
+    selectedPlan.exercises!.push(newPlanExercise);
     updateStorageTrainingPlan(allTrainingPlans);
 };

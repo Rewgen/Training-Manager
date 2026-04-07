@@ -2,12 +2,11 @@
 import { MuscleGroup } from "../models/MuscleGroup.js";
 import type { Exercise } from "../models/Exercise";
 
-// MAIN
-import { updateStorageExercise, updateDisplayedExercise } from "../main.js"; // save and apply changes
-import { allExercises } from "../main.js"; // variabels
+// STORAGE
+import { saveExercises } from "../storage/exerciseStorage.js";
 
 
-export let createExercise = (exerciseName: string, exerciseMuscleGroup: MuscleGroup) => {
+export let createExercise = (allExercises: Exercise[], exerciseName: string, exerciseMuscleGroup: MuscleGroup) => {
     let newExercise: Exercise = {
         id : Date.now(),
         name : exerciseName,
@@ -15,8 +14,7 @@ export let createExercise = (exerciseName: string, exerciseMuscleGroup: MuscleGr
     };
     allExercises.push(newExercise);
 
-    updateStorageExercise(allExercises);
-    updateDisplayedExercise(allExercises);
+    saveExercises(allExercises)
 };
 
 
@@ -34,7 +32,7 @@ export let applyFilter = (listFilter : string) => {
             const filtered = allExercises.filter(ex => ex.muscleGroup === selectedValue) as Array<Exercise>;
             exercises = filtered;
         }
-    updateDisplayedExercise(exercises);
+    saveExercises(allExercises)
 };
 
 
@@ -47,8 +45,7 @@ export let deleteExercise = (exerciseId : string) => {
     allExercises.length = 0;
     allExercises.push(...updatedExercises);
 
-    updateStorageExercise(allExercises);
-    updateDisplayedExercise(allExercises);
+    saveExercises(allExercises)
 }
 
 
@@ -69,6 +66,6 @@ export let convertToExercise = (exerciseId : string) : Exercise => {
 export let editExercise = (exerciseToEdit : Exercise, name? : string, muscleGroup? : MuscleGroup) => {
     if(name) exerciseToEdit.name = name;
     if(muscleGroup) exerciseToEdit.muscleGroup = muscleGroup;
-    updateStorageExercise(allExercises);
-    updateDisplayedExercise(allExercises);
+
+    saveExercises(allExercises)
 };

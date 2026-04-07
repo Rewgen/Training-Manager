@@ -1,6 +1,7 @@
 
 import type { Exercise } from "../models/Exercise.js";
 
+// COMPONENTS
 import { NewExerciseDialog } from "./Exercise/NewExerciseDialog.js";
 import { ExerciseList } from "./Exercise/ExerciseList.js";
 
@@ -36,10 +37,8 @@ export const ExerciseSection = ( {allExercises} : Props) => {
                 <option value={"Shoulders"}>Schultern</option>
                 <option value={"Arms"}>Arme</option>
             </select>
-
-            <button id="new-exercise">Übung erstellen</button>
-
-            <NewExerciseDialog/>
+            
+            <NewExerciseDialog allExercises={allExercises}/>
             <ExerciseList allExercises={allExercises} onDelete={deleteExercise} onEdit={editExercise}/>
         </section>
     )
