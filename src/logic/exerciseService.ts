@@ -6,15 +6,17 @@ import type { Exercise } from "../models/Exercise";
 import { saveExercises } from "../storage/exerciseStorage.js";
 
 
-export let createExercise = (allExercises: Exercise[], exerciseName: string, exerciseMuscleGroup: MuscleGroup) => {
-    let newExercise: Exercise = {
+export const createExercise = (allExercises: Exercise[], exerciseName: string, exerciseMuscleGroup: MuscleGroup) => {
+    const newExercise: Exercise = {
         id : Date.now(),
         name : exerciseName,
         muscleGroup : exerciseMuscleGroup,
     };
-    allExercises.push(newExercise);
 
-    saveExercises(allExercises)
+    const updatedExercises = [...allExercises];
+    updatedExercises.push(newExercise);
+    saveExercises(updatedExercises);
+    return updatedExercises
 };
 
 
@@ -38,24 +40,20 @@ export let applyFilter = (listFilter : string) => {
 
 
 // Delete Exercise by submitted id
-export let deleteExercise = (exerciseId : string) => {
+export let deleteExercise = (allExercises: Exercise[], exerciseId : number) => {
 
-    const numericId = Number(exerciseId);
-    const updatedExercises = allExercises.filter((ex) => ex.id !== numericId);
-    allExercises.length = 0;
-    allExercises.push(...updatedExercises);
-
-    saveExercises(allExercises)
+    const updatedExercises = allExercises.filter((ex) => ex.id !== exerciseId);
+    saveExercises(updatedExercises);
+    return updatedExercises
 }
 
 
 
 // Convert submitted Id to Exercise
-export let convertToExercise = (exerciseId : string) : Exercise => {
-    let id = Number(exerciseId);
-    let exerciseToEdit = allExercises.find(ex => ex.id === id);
+export let convertToExercise = (exercises : Exercise[], exerciseId : number) : Exercise => {
+    let exerciseToEdit = exercises.find(ex => ex.id === exerciseId);
     if (!exerciseToEdit) {
-        throw new Error(`Übung mit ID ${id} existiert nicht`);
+        throw new Error(`Übung mit ID ${exerciseId} existiert nicht`);
     };
     return exerciseToEdit
 }
@@ -63,9 +61,17 @@ export let convertToExercise = (exerciseId : string) : Exercise => {
 
 
 // Edit Exercise
-export let editExercise = (exerciseToEdit : Exercise, name? : string, muscleGroup? : MuscleGroup) => {
-    if(name) exerciseToEdit.name = name;
-    if(muscleGroup) exerciseToEdit.muscleGroup = muscleGroup;
+export let editExercise = (allExercises : Exercise[], idForChange : number, newName : string, newMuscleGroup : MuscleGroup) => {
 
-    saveExercises(allExercises)
+    const updatedExercises : Exercise[] = allExercises.map(ex => 
+        idForChange === ex.id
+        ? {...ex, name : newName, muscleGroup : newMuscleGroup}
+        : ex
+    )
+
+    console.log("old", allExercises);
+    console.log("new", updatedExercises)
+
+    saveExercises(updatedExercises);
+    return updatedExercises
 };

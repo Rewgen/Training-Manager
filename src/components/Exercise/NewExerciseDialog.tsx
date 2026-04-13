@@ -5,18 +5,19 @@ import { useRef } from "react"
 import type { MuscleGroup } from "../../models/MuscleGroup";
 import type { Exercise } from "../../models/Exercise";
 
-// STORAGE
-import { createExercise } from "../../logic/exerciseService.js";
+type Props = {
+    onCreate : (exerciseName : string, exerciseMuscleGroup : MuscleGroup) => void 
+}
 
 
-export const NewExerciseDialog = ( {allExercises} : {allExercises: Exercise[]} ) => {
+export const NewExerciseDialog = ( {onCreate} : Props ) => {
 
     const dialogRef = useRef<HTMLDialogElement>(null);
-    const openDialog = () => dialogRef.current?.showModal();
-    const closeDialog = () => dialogRef.current?.close()
-
     const newExerciseNameRef = useRef<HTMLInputElement>(null);
     const newExerciseMuscleGroupRef = useRef<HTMLSelectElement>(null);
+    const openDialog = () => dialogRef.current?.showModal();
+    const closeDialog = () => dialogRef.current?.close();
+
     
     return (
 
@@ -24,7 +25,14 @@ export const NewExerciseDialog = ( {allExercises} : {allExercises: Exercise[]} )
             <button id="new-exercise" onClick={openDialog}>Übung erstellen</button>
 
             <dialog ref={dialogRef} id="new-exercise-dialog">
-                <form id="add-exercise-container">
+                <form id="add-exercise-container" onSubmit={(event) => {
+                    event.preventDefault();
+                    closeDialog();
+                    onCreate(
+                        newExerciseNameRef.current?.value!, 
+                        newExerciseMuscleGroupRef.current?.value as MuscleGroup
+                    );
+                }}>
                     <input ref={newExerciseNameRef} type="text" id="add-exercise-name" placeholder="Name der Übung" required/>
                     <select ref={newExerciseMuscleGroupRef} id="add-exercise-muscleGroup" defaultValue={""} required>
                         <option value="" disabled hidden>Bitte wählen</option>
@@ -35,10 +43,7 @@ export const NewExerciseDialog = ( {allExercises} : {allExercises: Exercise[]} )
                         <option value="Shoulders">Schultern</option>
                         <option value="Arms">Arme</option>
                     </select>
-                    <button type="submit" onClick={() => {
-                        closeDialog;
-                        createExercise(allExercises, newExerciseNameRef.current?.value!, newExerciseMuscleGroupRef.current?.value as MuscleGroup)
-                    }}>Absenden</button>
+                    <button type="submit">Absenden</button>
                 </form>
             </dialog>
         </div>

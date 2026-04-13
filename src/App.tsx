@@ -31,7 +31,7 @@ const App =() => {
     return (
         <>
             <ViewSwitcher view={view} onViewChange={setView}/>
-                {view === "exercises" && <ExerciseSection allExercises={allExercises}/>}
+                {view === "exercises" && <ExerciseSection allExercises={allExercises} setExercises={setExercises}/>}
                 {view === "plans" && <TrainingPlanSection allTrainingPlans={allTrainingPlans}/>}
         </>
     )
