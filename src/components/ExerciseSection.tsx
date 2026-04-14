@@ -29,7 +29,6 @@ export const ExerciseSection = ( {allExercises, setExercises} : Props) => {
 
     const handleCreate = (exerciseName: string, exerciseMuscleGroup: MuscleGroup) => {
         const updated = createExercise(allExercises, exerciseName, exerciseMuscleGroup);
-        console.log("erstellt:", updated);
         setExercises(updated)
     }
 
@@ -37,7 +36,6 @@ export const ExerciseSection = ( {allExercises, setExercises} : Props) => {
         const updated = deleteExercise(allExercises, exerciseId);
         setExercises(updated);
     }
-
 
     const handleEdit = (exerciseId : number, name : string, muscleGroup : MuscleGroup) => {
         const updated = editExercise(allExercises, exerciseId, name, muscleGroup)

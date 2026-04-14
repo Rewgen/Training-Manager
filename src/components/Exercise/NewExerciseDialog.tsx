@@ -13,11 +13,10 @@ type Props = {
 export const NewExerciseDialog = ( {onCreate} : Props ) => {
 
     const dialogRef = useRef<HTMLDialogElement>(null);
-    const newExerciseNameRef = useRef<HTMLInputElement>(null);
-    const newExerciseMuscleGroupRef = useRef<HTMLSelectElement>(null);
     const openDialog = () => dialogRef.current?.showModal();
     const closeDialog = () => dialogRef.current?.close();
-
+    const newExerciseNameRef = useRef<HTMLInputElement>(null);
+    const newExerciseMuscleGroupRef = useRef<HTMLSelectElement>(null);
     
     return (
 

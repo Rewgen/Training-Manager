@@ -2,22 +2,31 @@
 import type { TrainingPlan } from "../models/TrainingPlan.js";
 import type { ViewMode } from "../models/ViewMode.js";
 import type { PlanExercise } from "../models/PlanExercise.js";
+import { saveTrainingPlans } from "../storage/trainingPlanStorage.js";
 
 // MAIN
-import { updateStorageTrainingPlan, updateView } from "../main.js";
-import { allTrainingPlans } from "../main.js";
+
 
 
 // add new Training Plan
-export let createTrainingPlan = function(planName:string){
+export let createTrainingPlan = function(allTrainingPlans : TrainingPlan[], planName : string){
+    
+    const updatedTrainingPlans : TrainingPlan[] = allTrainingPlans.map((plan) => ({
+        ...plan,
+        exercises: [...(plan.exercises ?? [])]
+    }))
+
+    console.log(updatedTrainingPlans);
+
     let newTrainingPlan : TrainingPlan = {
         name : planName,
         id : Date.now(),
         exercises: []
     };
-    allTrainingPlans.push(newTrainingPlan)
+    updatedTrainingPlans.push(newTrainingPlan);
+    saveTrainingPlans(updatedTrainingPlans);
 
-    updateStorageTrainingPlan(allTrainingPlans);
+    return updatedTrainingPlans
 };
 
 

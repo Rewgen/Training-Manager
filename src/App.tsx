@@ -32,7 +32,7 @@ const App =() => {
         <>
             <ViewSwitcher view={view} onViewChange={setView}/>
                 {view === "exercises" && <ExerciseSection allExercises={allExercises} setExercises={setExercises}/>}
-                {view === "plans" && <TrainingPlanSection allTrainingPlans={allTrainingPlans}/>}
+                {view === "plans" && <TrainingPlanSection allTrainingPlans={allTrainingPlans} setTrainingPlans={setTrainingPlans}/>}
         </>
     )
 }
